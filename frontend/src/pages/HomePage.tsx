@@ -3,6 +3,7 @@ import Intro from "../components/Intro";
 import About from "../components/About";
 import Services from "../components/Services";
 import PersonalizedPortfolio from "../components/PersonalizedPortfolio";
+import ClientLogos from "../components/ClientLogos";
 import NeedsSection from "../components/NeedsSection";
 import FAQ from "../components/FAQ";
 import SEO from "../components/SEO";
@@ -16,6 +17,7 @@ export default function HomePage() {
       />
       <Hero />
       <Intro />
+      <ClientLogos />
       <PersonalizedPortfolio />
       <About />
       <Services />

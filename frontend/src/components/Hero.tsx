@@ -18,8 +18,6 @@ export default function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 1.1]);
 
-  const videoUrl = "https://www.dropbox.com/scl/fi/evja43q96av8luo0eet44/Indiqube-Premier-League-Teaser.mp4?rlkey=iubtj6lo7e9zi02fxjbtkskur&st=ese6ddxj&raw=1";
-
   const toggleMute = () => {
     if (videoRef.current) {
       videoRef.current.muted = !videoRef.current.muted;
@@ -45,13 +43,14 @@ export default function Hero() {
         <motion.div style={{ opacity, scale }} className="absolute inset-0 z-0 overflow-hidden">
           <video
             ref={videoRef}
-            src={videoUrl}
             autoPlay
             loop
             muted
             playsInline
             className="absolute inset-0 w-full h-full object-cover opacity-80"
-          />
+          >
+            <source src="https://res.cloudinary.com/dofg6bsom/video/upload/v1773760294/showreel_jwuwa3.mp4" type="video/mp4" />
+          </video>
           {/* Dark Overlay for readability */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 pointer-events-none" />
         </motion.div>

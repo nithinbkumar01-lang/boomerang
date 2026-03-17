@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Reveal } from "../components/Reveal";
+import ClientLogos from "../components/ClientLogos";
 import { useNavigate } from "react-router-dom";
 import SEO from "../components/SEO";
 
@@ -145,6 +146,8 @@ export default function WorkPage() {
           )}
         </div>
       </section>
+
+      <ClientLogos variant="dark" />
 
       {/* Creative Comrades Section (Footer CTA) */}
       <section className="py-32 px-6 md:px-12 bg-black">

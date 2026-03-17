@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Reveal } from "../components/Reveal";
+import ClientLogos from "../components/ClientLogos";
 import SEO from "../components/SEO";
 import { 
   Camera, 
@@ -431,6 +432,8 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+
+      <ClientLogos variant="dark" />
 
       {/* FAQ Section */}
       <FAQ />

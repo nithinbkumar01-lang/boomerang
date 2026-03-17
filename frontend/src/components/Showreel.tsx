@@ -31,12 +31,15 @@ export default function Showreel() {
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           className="relative aspect-video rounded-3xl overflow-hidden group cursor-pointer shadow-2xl shadow-black/50"
         >
-          <img 
-            src="https://picsum.photos/seed/showreel/1920/1080" 
-            alt="Showreel" 
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
             className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
-            referrerPolicy="no-referrer"
-          />
+          >
+            <source src="https://res.cloudinary.com/dofg6bsom/video/upload/v1773760294/showreel_jwuwa3.mp4" type="video/mp4" />
+          </video>
           
           {/* Play Button */}
           <div className="absolute inset-0 flex items-center justify-center">
