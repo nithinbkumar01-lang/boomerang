@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Plus, Minus } from "lucide-react";
 import { Reveal } from "./Reveal";
@@ -36,15 +36,16 @@ const services = [
 
 export default function Services() {
   const [activeId, setActiveId] = useState<string | null>("branding");
+  const containerRef = useRef(null);
 
   return (
-    <section id="services" className="py-32 px-6 md:px-12 bg-paper">
-      <div className="max-w-6xl mx-auto">
+    <section id="services" ref={containerRef} className="py-40 md:py-56 px-6 md:px-12 bg-paper border-b border-ink/5">
+      <div className="max-w-7xl mx-auto">
         {/* Quote Header */}
-        <div className="text-center mb-32 max-w-4xl mx-auto">
-          <Reveal delay={0.2}>
+        <div className="text-center mb-40 max-w-5xl mx-auto">
+          <Reveal delay={0.2} direction="up">
             <motion.h2
-              className="text-3xl md:text-5xl font-display font-medium leading-[1.2] text-ink italic"
+              className="text-3xl md:text-6xl font-display font-medium leading-[1.1] text-ink italic tracking-tight"
             >
               " We prioritize trust and believe in honesty, transparency, and reliability. We consistently deliver and maintain open communication to build trust with our clients. "
             </motion.h2>

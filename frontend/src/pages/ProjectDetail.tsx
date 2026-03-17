@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
 import { Reveal } from "../components/Reveal";
 import { ArrowLeft, Star } from "lucide-react";
+import SEO from "../components/SEO";
 
 const PROJECTS_DATA: Record<string, any> = {
   "1": {
@@ -82,6 +83,11 @@ export default function ProjectDetail() {
 
   return (
     <div className="bg-black text-white min-h-screen pt-32 pb-24">
+      <SEO 
+        title={`${project.title} | Projects`}
+        description={project.description}
+        image={project.gallery[0]}
+      />
       <div className="max-w-7xl mx-auto px-6">
         {/* Back Button */}
         <button 

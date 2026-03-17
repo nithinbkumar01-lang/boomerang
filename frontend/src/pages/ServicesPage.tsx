@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Reveal } from "../components/Reveal";
+import SEO from "../components/SEO";
 import { 
   Camera, 
   Video, 
@@ -172,6 +173,10 @@ export default function ServicesPage() {
 
   return (
     <div className="bg-paper min-h-screen pt-20">
+      <SEO 
+        title="Our Services | Boomerang Studios"
+        description="From pre-production to post-production, Boomerang Studios offers comprehensive video production services including cinematography, drone videography, and 3D animation."
+      />
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-center px-6 md:px-12 overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -201,192 +206,10 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Studio Section */}
-      <section className="py-24 px-6 md:px-12">
-        <div className="max-w-7xl mx-auto bg-ink text-white rounded-[4rem] p-12 md:p-24 overflow-hidden relative border border-white/10">
-          <div className="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-brand rounded-full blur-[150px]" />
-          </div>
-
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
-            <div className="text-left">
-              <Reveal>
-                <h2 className="text-4xl md:text-7xl font-display font-black mb-8 uppercase tracking-tighter leading-none">
-                  Rent, Shoot, Wow: <br/> <span className="text-brand">Our Studio Awaits!</span>
-                </h2>
-              </Reveal>
-              <p className="text-white/60 text-lg md:text-xl max-w-xl mb-10 leading-relaxed">
-                We've got the coolest tech and the coolest resources to bring your ideas to life. Book a tour and come be a part of the excitement — we're eager to show you around with a smile!
-              </p>
-              <motion.button 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-brand text-white px-10 py-5 rounded-full font-bold uppercase tracking-[0.2em] shadow-2xl shadow-brand/20"
-              >
-                Book a Tour
-              </motion.button>
-            </div>
-            
-            <div className="relative">
-              <motion.div 
-                animate={{ y: [0, -20, 0] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                className="aspect-video rounded-[40px] overflow-hidden border border-white/10 shadow-2xl"
-              >
-                <img 
-                  src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=1200&auto=format&fit=crop" 
-                  alt="Studio Main" 
-                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
-                  referrerPolicy="no-referrer"
-                />
-              </motion.div>
-              <div className="absolute -bottom-10 -left-10 w-48 h-48 rounded-3xl overflow-hidden border-4 border-ink shadow-2xl hidden md:block">
-                <img 
-                  src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=600&auto=format&fit=crop" 
-                  alt="Studio Detail" 
-                  className="w-full h-full object-cover"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-            </div>
-          </div>
-          
-          <div className="flex gap-6 overflow-x-auto pb-8 no-scrollbar snap-x">
-            {[1, 2, 3, 4, 5].map((i) => (
-              <div key={i} className="flex-shrink-0 w-[70vw] md:w-[30vw] aspect-[4/3] rounded-3xl overflow-hidden snap-center">
-                <img 
-                  src={`https://picsum.photos/seed/studio-v2-${i}/800/600`} 
-                  alt="Studio Gallery" 
-                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Pre-Production */}
-      <section className="py-24 px-6 md:px-12 border-b border-ink/5">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
-          <div>
-            <h2 className="text-3xl md:text-5xl font-display font-bold mb-8 uppercase tracking-tighter">Pre-Production</h2>
-            <p className="text-base text-ink/60 mb-8 leading-relaxed">
-              Before the cameras roll, the magic of video production begins with pre-production. This is where your ideas take shape, scripts are written, and plans are made.
-            </p>
-            <p className="text-xl font-display font-bold text-brand mb-12">
-              Pre-production is the critical planning phase where we lay the foundation for your video project. This stage involves:
-            </p>
-            <div className="grid grid-cols-2 gap-4">
-              <img src="https://picsum.photos/seed/pre1/600/400" className="rounded-2xl aspect-square object-cover grayscale hover:grayscale-0 transition-all duration-500" referrerPolicy="no-referrer" />
-              <img src="https://picsum.photos/seed/pre2/600/400" className="rounded-2xl aspect-square object-cover grayscale hover:grayscale-0 transition-all duration-500" referrerPolicy="no-referrer" />
-            </div>
-          </div>
-          <div className="space-y-6">
-            {PRE_PRODUCTION.map((item, i) => (
-              <motion.div 
-                key={i}
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="flex gap-6 p-5 rounded-3xl hover:bg-ink/5 transition-all duration-500 group"
-              >
-                <div className="w-10 h-10 rounded-xl bg-brand/10 text-brand flex items-center justify-center flex-shrink-0 group-hover:bg-brand group-hover:text-white transition-colors">
-                  {item.icon}
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold mb-1">{item.title}</h3>
-                  <p className="text-sm text-ink/60 leading-relaxed">{item.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Production */}
-      <section className="py-24 px-6 md:px-12 bg-ink text-white">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
-          <div className="order-2 lg:order-1 space-y-6">
-            {PRODUCTION.map((item, i) => (
-              <motion.div 
-                key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="flex gap-6 p-5 rounded-3xl hover:bg-white/5 transition-all duration-500 group"
-              >
-                <div className="w-10 h-10 rounded-xl bg-brand/20 text-brand flex items-center justify-center flex-shrink-0 group-hover:bg-brand group-hover:text-white transition-colors">
-                  {item.icon}
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold mb-1">{item.title}</h3>
-                  <p className="text-sm text-white/60 leading-relaxed">{item.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-          <div className="order-1 lg:order-2">
-            <h2 className="text-3xl md:text-5xl font-display font-bold mb-8 uppercase tracking-tighter">Production</h2>
-            <p className="text-base text-white/60 mb-8 leading-relaxed">
-              The heart of video production lies in the production phase. This is where we turn your vision into reality.
-            </p>
-            <p className="text-xl font-display font-bold text-brand mb-12">
-              Production is where your video project comes to life. We offer a wide range of production services to bring your vision to the screen, includes:
-            </p>
-            <div className="grid grid-cols-2 gap-4">
-              <img src="https://picsum.photos/seed/prod1/600/400" className="rounded-2xl aspect-square object-cover grayscale hover:grayscale-0 transition-all duration-500" referrerPolicy="no-referrer" />
-              <img src="https://picsum.photos/seed/prod2/600/400" className="rounded-2xl aspect-square object-cover grayscale hover:grayscale-0 transition-all duration-500" referrerPolicy="no-referrer" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Post-Production */}
-      <section className="py-24 px-6 md:px-12 border-b border-ink/5">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
-          <div>
-            <h2 className="text-3xl md:text-5xl font-display font-bold mb-8 uppercase tracking-tighter">Post-Production</h2>
-            <p className="text-base text-ink/60 mb-8 leading-relaxed">
-              The real magic happens in post-production. This is where we take the raw footage and craft it into a polished, engaging video.
-            </p>
-            <p className="text-xl font-display font-bold text-brand mb-12">
-              Our post-production services cover video editing, sound design, color correction, visual effects, and more. We pay meticulous attention to detail to ensure your video looks and sounds its best.
-            </p>
-            <div className="grid grid-cols-2 gap-4">
-              <img src="https://picsum.photos/seed/post1/600/400" className="rounded-2xl aspect-square object-cover grayscale hover:grayscale-0 transition-all duration-500" referrerPolicy="no-referrer" />
-              <img src="https://picsum.photos/seed/post2/600/400" className="rounded-2xl aspect-square object-cover grayscale hover:grayscale-0 transition-all duration-500" referrerPolicy="no-referrer" />
-            </div>
-          </div>
-          <div className="space-y-6">
-            {POST_PRODUCTION.map((item, i) => (
-              <motion.div 
-                key={i}
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="flex gap-6 p-5 rounded-3xl hover:bg-ink/5 transition-all duration-500 group"
-              >
-                <div className="w-10 h-10 rounded-xl bg-brand/10 text-brand flex items-center justify-center flex-shrink-0 group-hover:bg-brand group-hover:text-white transition-colors">
-                  {item.icon}
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold mb-1">{item.title}</h3>
-                  <p className="text-sm text-ink/60 leading-relaxed">{item.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Categories */}
+      {/* Categories (Experts) Section */}
       <section className="py-24 px-4 md:px-8">
         <div className="max-w-7xl mx-auto bg-ink text-white rounded-[4rem] p-8 md:p-16 lg:p-24 overflow-hidden relative border border-white/10">
-          {/* Background Grid Lines for the dark section */}
+          {/* Background Grid Lines */}
           <div className="absolute inset-0 opacity-10 pointer-events-none">
             <div className="h-full w-full grid grid-cols-6 md:grid-cols-12 gap-0">
               {Array.from({ length: 12 }).map((_, i) => (
@@ -413,7 +236,8 @@ export default function ServicesPage() {
                 <motion.div 
                   key={i}
                   layout
-                  onClick={() => setActiveCategory(isActive ? null : i)}
+                  onMouseEnter={() => setActiveCategory(i)}
+                  onMouseLeave={() => setActiveCategory(null)}
                   initial={false}
                   className={`relative overflow-hidden rounded-[2.5rem] transition-all duration-700 cursor-pointer group ${isActive ? 'bg-white/5 p-8 md:p-12' : 'border-b border-white/5 py-10 px-6 hover:bg-white/[0.02]'}`}
                 >
@@ -430,7 +254,7 @@ export default function ServicesPage() {
                         )}
                       </div>
                       <motion.div
-                        animate={{ rotate: isActive ? 45 : 0 }}
+                        animate={{ rotate: isActive ? 45 : 0, scale: isActive ? 1.2 : 1 }}
                         className={`transition-colors duration-500 ${isActive ? 'text-brand' : 'text-white/20 group-hover:text-white'}`}
                       >
                         {isActive ? <ArrowUpRight size={48} strokeWidth={1.5} /> : <ArrowRight size={32} strokeWidth={1.5} />}
@@ -446,17 +270,6 @@ export default function ServicesPage() {
                           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                           className="mt-10"
                         >
-                          <div className="flex gap-6 overflow-x-auto pb-10 no-scrollbar snap-x mb-10">
-                            {cat.images.map((img, imgIdx) => (
-                              <motion.div 
-                                key={imgIdx} 
-                                whileHover={{ scale: 1.02 }}
-                                className="flex-shrink-0 w-[75vw] md:w-[45vw] aspect-video rounded-[2rem] overflow-hidden snap-center shadow-2xl border border-white/5"
-                              >
-                                <img src={img} alt={cat.title} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-                              </motion.div>
-                            ))}
-                          </div>
                           <div className="max-w-3xl">
                             <motion.h3 
                               initial={{ opacity: 0, x: -20 }}
@@ -480,6 +293,141 @@ export default function ServicesPage() {
                 </motion.div>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* Production Workflow Section */}
+      <section className="py-24 bg-ink border-y border-white/10 relative overflow-hidden">
+        {/* Background Grid Lines */}
+        <div className="absolute inset-0 opacity-10 pointer-events-none">
+          <div className="h-full w-full grid grid-cols-6 md:grid-cols-12 gap-0">
+            {Array.from({ length: 12 }).map((_, i) => (
+              <div key={i} className="border-r border-white/10 h-full" />
+            ))}
+          </div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 py-12 md:py-24 text-white relative z-10">
+          <div className="relative z-10 mb-20 text-center">
+            <Reveal>
+              <h2 className="text-4xl md:text-7xl font-display font-black mb-6 uppercase tracking-tighter">
+                Our <span className="text-brand">Workflow</span>
+              </h2>
+            </Reveal>
+            <p className="text-white/40 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
+              From the first spark of an idea to the final polished frame, we guide your project through a meticulous three-phase journey.
+            </p>
+          </div>
+
+          <div className="space-y-12 relative z-10">
+            {/* Pre-Production */}
+            <div className="border border-white/10 rounded-[3rem] p-8 md:p-12 bg-white/[0.02] hover:bg-white/[0.04] transition-colors duration-500">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <div>
+                  <h3 className="text-2xl md:text-4xl font-display font-bold mb-6 uppercase tracking-tighter text-brand">01. Pre-Production</h3>
+                  <p className="text-base text-white/60 mb-8 leading-relaxed">
+                    Before the cameras roll, the magic of video production begins with pre-production. This is where your ideas take shape, scripts are written, and plans are made.
+                  </p>
+                  <div className="grid grid-cols-2 gap-4">
+                    <img src="https://picsum.photos/seed/pre1/600/400" className="rounded-2xl aspect-square object-cover grayscale hover:grayscale-0 transition-all duration-500" referrerPolicy="no-referrer" />
+                    <img src="https://picsum.photos/seed/pre2/600/400" className="rounded-2xl aspect-square object-cover grayscale hover:grayscale-0 transition-all duration-500" referrerPolicy="no-referrer" />
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  {PRE_PRODUCTION.map((item, i) => (
+                    <motion.div 
+                      key={i}
+                      initial={{ opacity: 0, x: 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1 }}
+                      className="flex gap-4 p-4 rounded-2xl hover:bg-white/5 transition-all duration-500 group"
+                    >
+                      <div className="w-8 h-8 rounded-lg bg-brand/10 text-brand flex items-center justify-center flex-shrink-0 group-hover:bg-brand group-hover:text-white transition-colors">
+                        {item.icon}
+                      </div>
+                      <div>
+                        <h4 className="text-base font-bold mb-1">{item.title}</h4>
+                        <p className="text-xs text-white/60 leading-relaxed">{item.desc}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Production */}
+            <div className="border border-white/10 rounded-[3rem] p-8 md:p-12 bg-white/[0.02] hover:bg-white/[0.04] transition-colors duration-500">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <div className="order-2 lg:order-1 space-y-4">
+                  {PRODUCTION.map((item, i) => (
+                    <motion.div 
+                      key={i}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1 }}
+                      className="flex gap-4 p-4 rounded-2xl hover:bg-white/5 transition-all duration-500 group"
+                    >
+                      <div className="w-8 h-8 rounded-lg bg-brand/20 text-brand flex items-center justify-center flex-shrink-0 group-hover:bg-brand group-hover:text-white transition-colors">
+                        {item.icon}
+                      </div>
+                      <div>
+                        <h4 className="text-base font-bold mb-1">{item.title}</h4>
+                        <p className="text-xs text-white/60 leading-relaxed">{item.desc}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+                <div className="order-1 lg:order-2">
+                  <h3 className="text-2xl md:text-4xl font-display font-bold mb-6 uppercase tracking-tighter text-brand">02. Production</h3>
+                  <p className="text-base text-white/60 mb-8 leading-relaxed">
+                    The heart of video production lies in the production phase. This is where we turn your vision into reality.
+                  </p>
+                  <div className="grid grid-cols-2 gap-4">
+                    <img src="https://picsum.photos/seed/prod1/600/400" className="rounded-2xl aspect-square object-cover grayscale hover:grayscale-0 transition-all duration-500" referrerPolicy="no-referrer" />
+                    <img src="https://picsum.photos/seed/prod2/600/400" className="rounded-2xl aspect-square object-cover grayscale hover:grayscale-0 transition-all duration-500" referrerPolicy="no-referrer" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Post-Production */}
+            <div className="border border-white/10 rounded-[3rem] p-8 md:p-12 bg-white/[0.02] hover:bg-white/[0.04] transition-colors duration-500">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <div>
+                  <h3 className="text-2xl md:text-4xl font-display font-bold mb-6 uppercase tracking-tighter text-brand">03. Post-Production</h3>
+                  <p className="text-base text-white/60 mb-8 leading-relaxed">
+                    The real magic happens in post-production. This is where we take the raw footage and craft it into a polished, engaging video.
+                  </p>
+                  <div className="grid grid-cols-2 gap-4">
+                    <img src="https://picsum.photos/seed/post1/600/400" className="rounded-2xl aspect-square object-cover grayscale hover:grayscale-0 transition-all duration-500" referrerPolicy="no-referrer" />
+                    <img src="https://picsum.photos/seed/post2/600/400" className="rounded-2xl aspect-square object-cover grayscale hover:grayscale-0 transition-all duration-500" referrerPolicy="no-referrer" />
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  {POST_PRODUCTION.map((item, i) => (
+                    <motion.div 
+                      key={i}
+                      initial={{ opacity: 0, x: 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1 }}
+                      className="flex gap-4 p-4 rounded-2xl hover:bg-white/5 transition-all duration-500 group"
+                    >
+                      <div className="w-8 h-8 rounded-lg bg-brand/10 text-brand flex items-center justify-center flex-shrink-0 group-hover:bg-brand group-hover:text-white transition-colors">
+                        {item.icon}
+                      </div>
+                      <div>
+                        <h4 className="text-base font-bold mb-1">{item.title}</h4>
+                        <p className="text-xs text-white/60 leading-relaxed">{item.desc}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

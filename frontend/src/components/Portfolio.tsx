@@ -3,19 +3,6 @@ import React, { useState, useRef, useEffect } from "react";
 import { Reveal } from "./Reveal";
 import { ArrowUpRight } from "lucide-react";
 
-const SHORT_FORM_VIDEOS = [
-  { id: 1, url: "https://cdn.pixabay.com/video/2021/04/12/70796-537392700_large.mp4", title: "Urban Vibes" },
-  { id: 2, url: "https://cdn.pixabay.com/video/2023/10/20/185785-876118331_large.mp4", title: "Street Style" },
-  { id: 3, url: "https://cdn.pixabay.com/video/2022/01/18/104688-666878342_large.mp4", title: "Night Life" },
-  { id: 4, url: "https://cdn.pixabay.com/video/2021/09/01/87103-596486411_large.mp4", title: "City Pulse" },
-];
-
-const LONG_FORM_VIDEOS = [
-  { id: 101, url: "https://cdn.pixabay.com/video/2020/09/25/51130-464240742_large.mp4", title: "Cinematic Story" },
-  { id: 102, url: "https://cdn.pixabay.com/video/2022/09/06/130353-747146524_large.mp4", title: "Brand Narrative" },
-  { id: 103, url: "https://cdn.pixabay.com/video/2021/08/10/84514-586419131_large.mp4", title: "Documentary Style" },
-];
-
 import { useNavigate } from "react-router-dom";
 
 interface SwipeCardProps {
@@ -133,8 +120,37 @@ function SwipeCard({ item, onSwipe, isTop, position, aspectRatio = "aspect-[9/16
 }
 
 export default function Portfolio() {
-  const [shortCards, setShortCards] = useState(SHORT_FORM_VIDEOS);
-  const [longCards, setLongCards] = useState(LONG_FORM_VIDEOS);
+  const [shortCards, setShortCards] = useState<any[]>([]);
+  const [longCards, setLongCards] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [shortRes, longRes] = await Promise.all([
+          fetch("/api/projects/short"),
+          fetch("/api/projects/long")
+        ]);
+        
+        if (!shortRes.ok || !longRes.ok) {
+          throw new Error("Failed to fetch projects");
+        }
+
+        const shortData = await shortRes.json();
+        const longData = await longRes.json();
+        
+        setShortCards(Array.isArray(shortData) ? shortData : []);
+        setLongCards(Array.isArray(longData) ? longData : []);
+      } catch (error) {
+        console.error("Failed to fetch projects:", error);
+        setShortCards([]);
+        setLongCards([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
 
   const handleShortSwipe = () => {
     setShortCards(prev => {
@@ -153,6 +169,14 @@ export default function Portfolio() {
       return newCards;
     });
   };
+
+  if (loading) {
+    return (
+      <div className="bg-black text-white py-32 flex items-center justify-center">
+        <div className="w-12 h-12 border-4 border-brand border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
 
   return (
     <section id="projects" className="bg-black text-white py-24 md:py-32 overflow-hidden">

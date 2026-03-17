@@ -37,16 +37,17 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="py-32 bg-ink">
-      <div className="max-w-4xl mx-auto px-6">
-        <div className="text-center mb-20">
+    <section id="faq" className="py-40 md:py-56 bg-ink">
+      <div className="max-w-5xl mx-auto px-6">
+        <div className="text-center mb-24">
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-display font-black text-white uppercase tracking-tight"
+            className="text-4xl md:text-7xl font-display font-black text-white uppercase tracking-tighter leading-none"
           >
-            Curious? Check Out the <span className="text-brand">Scoop! (FAQs)</span>
+            Curious? Check Out the <br />
+            <span className="text-brand italic font-serif lowercase">Scoop! (FAQs)</span>
           </motion.h2>
         </div>
 

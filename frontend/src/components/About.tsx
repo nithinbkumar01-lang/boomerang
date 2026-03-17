@@ -35,7 +35,7 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
 
 export default function About() {
   return (
-    <section id="about" className="relative py-32 px-6 md:px-12 bg-paper text-ink overflow-hidden">
+    <section id="about" className="relative py-40 md:py-56 px-6 md:px-12 bg-paper text-ink overflow-hidden border-y border-ink/5">
       {/* Background Grid Lines */}
       <div className="absolute inset-0 opacity-5 pointer-events-none">
         <div className="h-full w-full grid grid-cols-6 md:grid-cols-12 gap-0">

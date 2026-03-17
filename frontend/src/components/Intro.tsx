@@ -12,35 +12,11 @@ const logos = [
 
 export default function Intro() {
   return (
-    <section className="relative bg-paper overflow-hidden">
-      {/* Pill Images at the top of this section */}
-      <div className="w-full px-4 pt-4 overflow-hidden mb-24">
-        <div className="flex gap-2 md:gap-4 justify-center">
-          {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-            <motion.div
-              key={i}
-              initial={{ y: 50, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.05, duration: 0.8 }}
-              whileHover={{ y: -20 }}
-              className="flex-shrink-0 w-[12vw] md:w-[10vw] aspect-[2/5] bg-ink/5 rounded-t-[100px] rounded-b-[100px] overflow-hidden border border-ink/10"
-            >
-              <img 
-                src={`https://picsum.photos/seed/vertora-pill-${i}/400/1000`} 
-                alt={`Work ${i}`} 
-                className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity"
-                referrerPolicy="no-referrer"
-              />
-            </motion.div>
-          ))}
-        </div>
-      </div>
-
-      <div className="max-w-5xl mx-auto text-center px-6 pb-32">
-        <Reveal delay={0.2}>
+    <section className="relative bg-paper overflow-hidden border-y border-ink/5">
+      <div className="max-w-6xl mx-auto text-center px-6 py-40 md:py-56">
+        <Reveal delay={0.2} direction="up">
           <motion.h2
-            className="text-4xl md:text-6xl font-display font-bold leading-[1.1] text-ink mb-20 tracking-tight"
+            className="text-4xl md:text-7xl font-display font-bold leading-[1.05] text-ink mb-24 tracking-tight"
           >
             We're Boomerang<span className="text-brand">®</span> — a creative studio cultivating bold brands, beautiful websites, and ideas that refuse to be ordinary.
           </motion.h2>
