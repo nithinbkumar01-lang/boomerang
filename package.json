@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "tsx backend/server.ts",
     "build": "vite build frontend",
+    "start": "node backend/server.ts",
     "preview": "vite preview frontend",
     "clean": "rm -rf frontend/dist",
     "lint": "tsc -p frontend/tsconfig.json --noEmit"

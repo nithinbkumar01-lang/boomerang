@@ -184,25 +184,43 @@ const PortfolioCard = ({ item, index, activeIndex, onSwipe }: CardProps) => {
 };
 
 export default function PersonalizedPortfolio() {
+  const [portfolioData, setPortfolioData] = useState(PORTFOLIO_DATA);
   const [shortIndex, setShortIndex] = useState(0);
   const [longIndex, setLongIndex] = useState(0);
   const [showNudge, setShowNudge] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/api/projects");
+        if (response.ok) {
+          const data = await response.json();
+          if (data && data.length > 0) {
+            setPortfolioData(data);
+          }
+        }
+      } catch (error) {
+        console.error("Failed to fetch projects:", error);
+      }
+    };
+    fetchData();
+  }, []);
 
   const handleShortSwipe = (direction: number) => {
     setShowNudge(false);
     setShortIndex((prev) => {
       const next = prev + direction;
-      if (next < 0) return PORTFOLIO_DATA.length - 1;
-      if (next >= PORTFOLIO_DATA.length) return 0;
+      if (next < 0) return portfolioData.length - 1;
+      if (next >= portfolioData.length) return 0;
       return next;
     });
   };
 
-  const nextLong = () => setLongIndex((prev) => (prev + 1) % PORTFOLIO_DATA.length);
-  const prevLong = () => setLongIndex((prev) => (prev - 1 + PORTFOLIO_DATA.length) % PORTFOLIO_DATA.length);
+  const nextLong = () => setLongIndex((prev) => (prev + 1) % portfolioData.length);
+  const prevLong = () => setLongIndex((prev) => (prev - 1 + portfolioData.length) % portfolioData.length);
 
-  const activeShort = PORTFOLIO_DATA[shortIndex];
-  const activeLong = PORTFOLIO_DATA[longIndex];
+  const activeShort = portfolioData[shortIndex];
+  const activeLong = portfolioData[longIndex];
 
   return (
     <section className="relative min-h-screen bg-black overflow-hidden py-40 md:py-56 px-6 md:px-12">
@@ -210,8 +228,8 @@ export default function PersonalizedPortfolio() {
       <div className="max-w-7xl mx-auto mb-40">
         <Reveal>
           <h2 className="text-7xl md:text-9xl font-display font-black text-white uppercase tracking-tighter leading-none text-center">
-            Our selected portfolio <br />
-            // <span className="text-brand italic font-serif lowercase">portfolio</span>
+            Our selected <br />
+            <span className="text-brand italic font-serif lowercase">portfolio</span>
           </h2>
         </Reveal>
       </div>
@@ -239,7 +257,7 @@ export default function PersonalizedPortfolio() {
           <div className="order-2 md:order-2 flex flex-col items-center">
             <div className="relative w-full h-[500px] flex items-center justify-center perspective-1000 mb-12">
               <AnimatePresence initial={false}>
-                {PORTFOLIO_DATA.map((item, i) => (
+                {portfolioData.map((item, i) => (
                   <PortfolioCard 
                     key={item.id} 
                     item={item} 
@@ -271,10 +289,10 @@ export default function PersonalizedPortfolio() {
                   className="space-y-2"
                 >
                   <div className="bg-[#FFB2FF] text-black px-4 py-1 rounded-full inline-block mb-2">
-                    <span className="text-[10px] font-bold uppercase tracking-tight">{activeShort.client}</span>
+                    <span className="text-[10px] font-bold uppercase tracking-tight">{activeShort?.client}</span>
                   </div>
-                  <h4 className="text-2xl md:text-3xl font-display font-black text-white uppercase tracking-tighter">{activeShort.title}</h4>
-                  <p className="text-sm md:text-base text-white/40 font-display font-black uppercase tracking-tighter">{activeShort.subtitle}</p>
+                  <h4 className="text-2xl md:text-3xl font-display font-black text-white uppercase tracking-tighter">{activeShort?.title}</h4>
+                  <p className="text-sm md:text-base text-white/40 font-display font-black uppercase tracking-tighter">{activeShort?.subtitle}</p>
                 </motion.div>
               </AnimatePresence>
             </div>
@@ -305,13 +323,13 @@ export default function PersonalizedPortfolio() {
               <div className="relative w-full aspect-video bg-neutral-900 rounded-xl border-[12px] border-neutral-800 shadow-2xl overflow-hidden">
                 <AnimatePresence mode="wait">
                   <motion.div
-                    key={activeLong.id}
+                    key={activeLong?.id}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     className="w-full h-full"
                   >
-                    <MediaRenderer url={activeLong.url} isActive={true} />
+                    {activeLong && <MediaRenderer url={activeLong.url} isActive={true} />}
                   </motion.div>
                 </AnimatePresence>
                 
@@ -348,10 +366,10 @@ export default function PersonalizedPortfolio() {
                   className="space-y-2"
                 >
                   <div className="bg-brand text-black px-4 py-1 rounded-full inline-block mb-2">
-                    <span className="text-[10px] font-bold uppercase tracking-tight">{activeLong.client}</span>
+                    <span className="text-[10px] font-bold uppercase tracking-tight">{activeLong?.client}</span>
                   </div>
-                  <h4 className="text-2xl md:text-3xl font-display font-black text-white uppercase tracking-tighter">{activeLong.title}</h4>
-                  <p className="text-sm md:text-base text-white/40 font-display font-black uppercase tracking-tighter">{activeLong.subtitle}</p>
+                  <h4 className="text-2xl md:text-3xl font-display font-black text-white uppercase tracking-tighter">{activeLong?.title}</h4>
+                  <p className="text-sm md:text-base text-white/40 font-display font-black uppercase tracking-tighter">{activeLong?.subtitle}</p>
                 </motion.div>
               </AnimatePresence>
             </div>
