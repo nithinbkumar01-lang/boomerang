@@ -3,10 +3,10 @@ import { Reveal } from "./Reveal";
 import { useEffect, useRef, useState } from "react";
 
 const STATS = [
-  { label: "YEARS OF EXPERIENCE", value: 15, suffix: "+" },
-  { label: "REPEATED CLIENTS", value: 200, suffix: "+" },
-  { label: "COMPLETED PROJECTS", value: 478, suffix: "+" },
-  { label: "HAPPY CLIENTS", value: 350, suffix: "+" },
+  { label: "YEARS OF EXPERIENCE", value: 3, suffix: "+" },
+  { label: "REPEATED CLIENTS", value: 18, suffix: "+" },
+  { label: "COMPLETED PROJECTS", value: 62, suffix: "+" },
+  { label: "HAPPY CLIENTS", value: 26, suffix: "+" },
 ];
 
 function Counter({ value, suffix }: { value: number; suffix: string }) {
@@ -76,7 +76,7 @@ export default function About() {
           <div className="lg:col-span-8">
             <Reveal>
               <p className="text-3xl md:text-5xl font-display font-light leading-tight mb-12">
-                <span className="text-ink/40">Established in 2015, we have dedicated ourselves to</span> crafting captivating visual narratives <span className="text-ink/40">defined by creativity, innovation, and an unwavering commitment to</span> <span className="text-brand">excellence in video production.</span>
+                <span className="text-ink/40">Established in 2024, we have dedicated ourselves to</span> crafting captivating visual narratives <span className="text-ink/40">defined by creativity, innovation, and an unwavering commitment to</span> <span className="text-brand">excellence in video production.</span>
               </p>
             </Reveal>
 

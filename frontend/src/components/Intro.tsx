@@ -3,11 +3,16 @@ import { Globe, Cpu, Layers, Zap, Hexagon } from "lucide-react";
 import { Reveal } from "./Reveal";
 
 const logos = [
-  { name: "Clonify", icon: <Globe size={20} /> },
-  { name: "Blob", icon: <Cpu size={20} /> },
-  { name: "Yallo!", icon: <Layers size={20} /> },
-  { name: "Bento", icon: <Zap size={20} /> },
-  { name: "Spher", icon: <Hexagon size={20} /> },
+  { name: "Images", src: "https://res.cloudinary.com/dmez9koqz/image/upload/v1774453011/images_lzgmpo.png" },
+  { name: "MNC", src: "https://res.cloudinary.com/dmez9koqz/image/upload/v1774453010/mnc_w4ufp5.jpg" },
+  { name: "Scale Socials", src: "https://res.cloudinary.com/dmez9koqz/image/upload/v1774453010/scale-socials_g2vmgb.jpg" },
+  { name: "Besqua", src: "https://res.cloudinary.com/dmez9koqz/image/upload/v1774453010/besqua_nwqxuf.png" },
+  { name: "RightIT", src: "https://res.cloudinary.com/dmez9koqz/image/upload/v1774453010/righit-sol_uhlkdk.jpg" },
+  { name: "Franchise India", src: "https://res.cloudinary.com/dmez9koqz/image/upload/v1774453011/franchaise-india_m9d2w1.png" },
+  { name: "Indiqube", src: "https://res.cloudinary.com/dmez9koqz/image/upload/v1774453009/indiqube_ljwlfc.webp" },
+  { name: "Amodacare", src: "https://res.cloudinary.com/dmez9koqz/image/upload/v1774453010/amodacare_nkxzmm.webp" },
+  { name: "Wissen", src: "https://res.cloudinary.com/dmez9koqz/image/upload/v1774453010/wissen-logo_f6mkmm.webp" },
+  { name: "Rapido", src: "https://res.cloudinary.com/dmez9koqz/image/upload/v1774453009/Rapido_sz9jju.webp" },
 ];
 
 export default function Intro() {
@@ -22,47 +27,53 @@ export default function Intro() {
           </motion.h2>
         </Reveal>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.6, duration: 0.8 }}
+        <div
           className="relative w-full overflow-hidden py-10"
         >
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4, duration: 1 }}
-            className="flex items-center gap-20 opacity-30 grayscale hover:grayscale-0 transition-all duration-700"
+          <div
+            className="flex items-center gap-8 md:gap-12"
           >
             <motion.div
               animate={{
-                x: [0, -1035], // Adjust based on content width
+                x: [-2000, 0], // Left to right scrolling
               }}
               transition={{
                 x: {
                   repeat: Infinity,
                   repeatType: "loop",
-                  duration: 25,
+                  duration: 40,
                   ease: "linear",
                 },
               }}
-              className="flex items-center gap-20 whitespace-nowrap"
+              className="flex items-center gap-8 md:gap-12 whitespace-nowrap"
             >
               {[...logos, ...logos, ...logos, ...logos].map((logo, idx) => (
-                <div key={idx} className="flex items-center gap-3 group cursor-default">
-                  <span className="text-ink group-hover:text-brand transition-colors">{logo.icon}</span>
-                  <span className="text-xs font-mono uppercase tracking-[0.2em] font-bold text-ink group-hover:text-brand transition-colors">{logo.name}</span>
+                <div key={idx} className="flex items-center justify-center min-w-[80px] md:min-w-[120px] h-16 md:h-24 px-2">
+                  <img 
+                    src={logo.src} 
+                    alt={logo.name} 
+                    className="max-h-full w-auto object-contain block"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                      const parent = target.parentElement;
+                      if (parent) {
+                        const text = document.createElement('span');
+                        text.innerText = logo.name;
+                        text.className = 'text-ink font-bold text-sm opacity-50';
+                        parent.appendChild(text);
+                      }
+                    }}
+                  />
                 </div>
               ))}
             </motion.div>
-          </motion.div>
+          </div>
           
           {/* Gradient Fades for seamless look */}
-          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-          <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
-        </motion.div>
+          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-paper to-transparent z-10 pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-paper to-transparent z-10 pointer-events-none" />
+        </div>
       </div>
     </section>
   );

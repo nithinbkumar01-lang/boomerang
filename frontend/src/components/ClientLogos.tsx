@@ -1,16 +1,16 @@
 import { motion } from "motion/react";
 
 const logos = [
-  { name: "The Amob", src: "https://storage.googleapis.com/ai-studio-assets/input_file_0.png" },
-  { name: "Besqua", src: "https://storage.googleapis.com/ai-studio-assets/input_file_1.png" },
-  { name: "Franchise India", src: "https://storage.googleapis.com/ai-studio-assets/input_file_2.png" },
-  { name: "Brewing Stories", src: "https://storage.googleapis.com/ai-studio-assets/input_file_3.png" },
-  { name: "Indiqube", src: "https://storage.googleapis.com/ai-studio-assets/input_file_4.png" },
-  { name: "MNC", src: "https://storage.googleapis.com/ai-studio-assets/input_file_5.png" },
-  { name: "Rapido", src: "https://storage.googleapis.com/ai-studio-assets/input_file_6.png" },
-  { name: "RightIT", src: "https://storage.googleapis.com/ai-studio-assets/input_file_7.png" },
-  { name: "Scale Socials", src: "https://storage.googleapis.com/ai-studio-assets/input_file_8.png" },
-  { name: "Wissen", src: "https://storage.googleapis.com/ai-studio-assets/input_file_9.png" },
+  { name: "Images", src: "https://res.cloudinary.com/dmez9koqz/image/upload/v1774453011/images_lzgmpo.png" },
+  { name: "MNC", src: "https://res.cloudinary.com/dmez9koqz/image/upload/v1774453010/mnc_w4ufp5.jpg" },
+  { name: "Scale Socials", src: "https://res.cloudinary.com/dmez9koqz/image/upload/v1774453010/scale-socials_g2vmgb.jpg" },
+  { name: "Besqua", src: "https://res.cloudinary.com/dmez9koqz/image/upload/v1774453010/besqua_nwqxuf.png" },
+  { name: "RightIT", src: "https://res.cloudinary.com/dmez9koqz/image/upload/v1774453010/righit-sol_uhlkdk.jpg" },
+  { name: "Franchise India", src: "https://res.cloudinary.com/dmez9koqz/image/upload/v1774453011/franchaise-india_m9d2w1.png" },
+  { name: "Indiqube", src: "https://res.cloudinary.com/dmez9koqz/image/upload/v1774453009/indiqube_ljwlfc.webp" },
+  { name: "Amodacare", src: "https://res.cloudinary.com/dmez9koqz/image/upload/v1774453010/amodacare_nkxzmm.webp" },
+  { name: "Wissen", src: "https://res.cloudinary.com/dmez9koqz/image/upload/v1774453010/wissen-logo_f6mkmm.webp" },
+  { name: "Rapido", src: "https://res.cloudinary.com/dmez9koqz/image/upload/v1774453009/Rapido_sz9jju.webp" },
 ];
 
 interface ClientLogosProps {
@@ -21,38 +21,39 @@ export default function ClientLogos({ variant = "light" }: ClientLogosProps) {
   const isDark = variant === "dark";
   
   return (
-    <section className={`py-20 overflow-hidden border-b ${isDark ? 'bg-black border-white/5' : 'bg-paper border-ink/5'}`}>
-      <div className="max-w-7xl mx-auto px-6 mb-12">
-        <span className={`${isDark ? 'text-white/40' : 'text-ink/40'} font-mono text-[10px] uppercase tracking-[0.3em]`}>
+    <section className={`py-24 overflow-hidden border-b ${isDark ? 'bg-black border-white/5' : 'bg-paper border-ink/5'}`}>
+      <div className="max-w-7xl mx-auto px-6 mb-16 text-center">
+        <span className={`${isDark ? 'text-white/40' : 'text-ink/40'} font-mono text-[10px] uppercase tracking-[0.4em] font-bold`}>
           Trusted by Industry Leaders
         </span>
       </div>
       
-      <div className="relative flex overflow-x-hidden">
-        <motion.div 
-          className="flex whitespace-nowrap"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{ 
-            duration: 30, 
-            repeat: Infinity, 
-            ease: "linear" 
-          }}
-        >
-          {/* Double the logos for seamless loop */}
-          {[...logos, ...logos].map((logo, index) => (
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-10 items-center justify-items-center">
+          {logos.map((logo, index) => (
             <div 
-              key={index} 
-              className={`mx-12 flex items-center justify-center grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500 ${isDark ? 'invert brightness-200' : ''}`}
+              key={index}
+              className="flex items-center justify-center min-w-[80px] md:min-w-[120px] h-16 md:h-24 px-2"
             >
               <img 
                 src={logo.src} 
                 alt={logo.name} 
-                className="h-12 md:h-16 w-auto object-contain"
-                referrerPolicy="no-referrer"
+                className="max-h-full w-auto object-contain block"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                  const parent = target.parentElement;
+                  if (parent) {
+                    const text = document.createElement('span');
+                    text.innerText = logo.name;
+                    text.className = `${isDark ? 'text-white' : 'text-ink'} font-bold text-sm opacity-50`;
+                    parent.appendChild(text);
+                  }
+                }}
               />
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
