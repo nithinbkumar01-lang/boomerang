@@ -44,10 +44,10 @@ export default function FAQ() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-7xl font-display font-black text-white uppercase tracking-tighter leading-none"
+            className="h2-section text-white"
           >
             Curious? Check Out the <br />
-            <span className="text-brand italic font-serif lowercase">Scoop! (FAQs)</span>
+            <span className="text-brand italic font-display lowercase">Scoop! (FAQs)</span>
           </motion.h2>
         </div>
 
@@ -65,7 +65,7 @@ export default function FAQ() {
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
                 className="w-full p-6 flex items-center justify-between text-left hover:bg-white/5 transition-colors"
               >
-                <span className="text-white font-display font-bold uppercase tracking-tight">{faq.q}</span>
+                <span className="text-white font-display font-bold uppercase tracking-tight text-lg">{faq.q}</span>
                 <div className={`transition-transform duration-300 ${openIndex === i ? 'rotate-180' : ''}`}>
                   <ChevronDown className="text-brand" size={20} />
                 </div>
@@ -79,7 +79,7 @@ export default function FAQ() {
                     exit={{ height: 0, opacity: 0 }}
                     className="overflow-hidden"
                   >
-                    <div className="p-6 pt-0 text-white/60 text-sm leading-relaxed">
+                    <div className="p-6 pt-0 text-white/60 text-body">
                       {faq.a}
                     </div>
                   </motion.div>

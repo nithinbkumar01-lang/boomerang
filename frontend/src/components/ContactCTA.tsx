@@ -18,7 +18,7 @@ export default function ContactCTA() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-7xl font-display font-black text-white uppercase tracking-tighter mb-8 leading-[0.9]"
+            className="h1-display text-white mb-8"
           >
             Not limited to video, <br />
             we're your creative comrades.
@@ -29,7 +29,7 @@ export default function ContactCTA() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-white/80 text-lg md:text-xl font-display mb-12 max-w-2xl mx-auto"
+            className="text-body text-white/80 mb-12 max-w-2xl mx-auto"
           >
             Got questions, project ideas, or just want to say hi? We're all ears!
           </motion.p>
@@ -37,7 +37,7 @@ export default function ContactCTA() {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-white text-brand px-12 py-6 rounded-full text-sm font-bold uppercase tracking-widest flex items-center gap-4 mx-auto shadow-2xl shadow-black/20"
+            className="bg-white text-brand px-12 py-6 rounded-full text-xs font-bold uppercase tracking-widest flex items-center gap-4 mx-auto shadow-2xl shadow-black/20"
           >
             Let's Collaborate <ArrowRight size={20} />
           </motion.button>

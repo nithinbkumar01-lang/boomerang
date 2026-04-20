@@ -39,13 +39,13 @@ export default function Services() {
   const containerRef = useRef(null);
 
   return (
-    <section id="services" ref={containerRef} className="py-40 md:py-56 px-6 md:px-12 bg-paper border-b border-ink/5">
+    <section id="services" ref={containerRef} className="section-spacing px-6 md:px-12 bg-paper border-b border-ink/5">
       <div className="max-w-7xl mx-auto">
         {/* Quote Header */}
-        <div className="text-center mb-40 max-w-5xl mx-auto">
+        <div className="text-center mb-24 max-w-5xl mx-auto">
           <Reveal delay={0.2} direction="up">
             <motion.h2
-              className="text-3xl md:text-6xl font-display font-medium leading-[1.1] text-ink italic tracking-tight"
+              className="h2-section text-ink/80 max-text-width mx-auto italic"
             >
               " We prioritize trust and believe in honesty, transparency, and reliability. We consistently deliver and maintain open communication to build trust with our clients. "
             </motion.h2>
@@ -64,12 +64,12 @@ export default function Services() {
                 onMouseEnter={() => setActiveId(service.id)}
               >
                 <div
-                  className="w-full py-10 flex items-center gap-8 text-left group cursor-pointer"
+                  className="w-full py-8 flex items-center gap-8 text-left group cursor-pointer"
                 >
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${isActive ? 'bg-brand text-white' : 'bg-ink/5 text-ink group-hover:bg-ink/10'}`}>
                     {isActive ? <Minus size={20} /> : <Plus size={20} />}
                   </div>
-                  <h3 className={`text-3xl md:text-5xl font-display font-bold transition-colors ${isActive ? 'text-ink' : 'text-ink/40 group-hover:text-ink/60'}`}>
+                  <h3 className={`h3-sub transition-colors ${isActive ? 'text-ink' : 'text-ink/40 group-hover:text-ink/60'}`}>
                     {service.title}
                   </h3>
                 </div>
@@ -83,9 +83,9 @@ export default function Services() {
                       transition={{ duration: 0.5, ease: [0.04, 0.62, 0.23, 0.98] }}
                       className="overflow-hidden"
                     >
-                      <div className="pb-16 pl-18 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                      <div className="pb-12 pl-18 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                         <div>
-                          <p className="text-lg text-ink/60 mb-8 max-w-md leading-relaxed">
+                          <p className="text-body text-ink/60 mb-8 max-text-width">
                             {service.desc}
                           </p>
                           <div className="flex flex-wrap gap-2">

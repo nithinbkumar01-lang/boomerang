@@ -192,7 +192,7 @@ export default function ServicesPage() {
         
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           <Reveal>
-            <h1 className="text-6xl md:text-[8rem] font-display font-black tracking-tighter uppercase leading-[0.8] mb-8">
+            <h1 className="h1-display mb-8">
               Services
             </h1>
           </Reveal>
@@ -200,7 +200,7 @@ export default function ServicesPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="max-w-xl text-lg md:text-xl font-display font-medium text-ink/60 leading-relaxed"
+            className="max-text-width text-body text-ink/60"
           >
             Join us on a journey where ideas transform into captivating video content, with a dash of creativity and a whole lot of fun.
           </motion.p>
@@ -208,8 +208,8 @@ export default function ServicesPage() {
       </section>
 
       {/* Categories (Experts) Section */}
-      <section className="py-24 px-4 md:px-8">
-        <div className="max-w-7xl mx-auto bg-ink text-white rounded-[4rem] p-8 md:p-16 lg:p-24 overflow-hidden relative border border-white/10">
+      <section className="py-16 px-4 md:px-8">
+        <div className="max-w-7xl mx-auto bg-ink text-white rounded-[4rem] p-6 md:p-12 lg:p-16 overflow-hidden relative border border-white/10">
           {/* Background Grid Lines */}
           <div className="absolute inset-0 opacity-10 pointer-events-none">
             <div className="h-full w-full grid grid-cols-6 md:grid-cols-12 gap-0">
@@ -221,11 +221,11 @@ export default function ServicesPage() {
 
           <div className="relative z-10 mb-20">
             <Reveal>
-              <h2 className="text-3xl md:text-5xl font-display font-bold mb-6 uppercase tracking-tighter">
+              <h2 className="h2-section mb-6">
                 We are your experts in <br/> <span className="text-brand">these categories</span>
               </h2>
             </Reveal>
-            <p className="text-white/40 max-w-xl text-sm md:text-base leading-relaxed">
+            <p className="text-white/40 max-text-width text-body">
               Our creative toolbox overflows with video possibilities! From captivating stories to informative animations, we craft videos that fit every need.
             </p>
           </div>
@@ -249,7 +249,7 @@ export default function ServicesPage() {
                           {(i + 1).toString().padStart(2, '0')}
                         </span>
                         {!isActive && (
-                          <h3 className="text-xl md:text-4xl font-display font-bold transition-all duration-500 group-hover:translate-x-6">
+                          <h3 className="text-xl md:text-4xl font-display font-bold transition-all duration-500 group-hover:translate-x-6 uppercase tracking-tighter">
                             {cat.title}
                           </h3>
                         )}
@@ -275,14 +275,14 @@ export default function ServicesPage() {
                             <motion.h3 
                               initial={{ opacity: 0, x: -20 }}
                               animate={{ opacity: 1, x: 0 }}
-                              className="text-2xl md:text-5xl font-display font-bold mb-6 uppercase tracking-tighter"
+                              className="h3-sub mb-6"
                             >
                               {cat.title}
                             </motion.h3>
                             <motion.p 
                               initial={{ opacity: 0 }}
                               animate={{ opacity: 0.6 }}
-                              className="text-sm md:text-base leading-relaxed font-light"
+                              className="text-body font-light"
                             >
                               {cat.desc}
                             </motion.p>
@@ -299,7 +299,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Production Workflow Section */}
-      <section className="py-24 bg-ink border-y border-white/10 relative overflow-hidden">
+      <section className="py-16 bg-ink border-y border-white/10 relative overflow-hidden">
         {/* Background Grid Lines */}
         <div className="absolute inset-0 opacity-10 pointer-events-none">
           <div className="h-full w-full grid grid-cols-6 md:grid-cols-12 gap-0">
@@ -309,14 +309,14 @@ export default function ServicesPage() {
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 py-12 md:py-24 text-white relative z-10">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 py-8 md:py-16 text-white relative z-10">
           <div className="relative z-10 mb-20 text-center">
             <Reveal>
-              <h2 className="text-4xl md:text-7xl font-display font-black mb-6 uppercase tracking-tighter">
+              <h2 className="h2-section mb-6">
                 Our <span className="text-brand">Workflow</span>
               </h2>
             </Reveal>
-            <p className="text-white/40 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
+            <p className="text-white/40 max-text-width mx-auto text-body">
               From the first spark of an idea to the final polished frame, we guide your project through a meticulous three-phase journey.
             </p>
           </div>
@@ -326,8 +326,8 @@ export default function ServicesPage() {
             <div className="border border-white/10 rounded-[3rem] p-8 md:p-12 bg-white/[0.02] hover:bg-white/[0.04] transition-colors duration-500">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
                 <div>
-                  <h3 className="text-2xl md:text-4xl font-display font-bold mb-6 uppercase tracking-tighter text-brand">01. Pre-Production</h3>
-                  <p className="text-base text-white/60 mb-8 leading-relaxed">
+                  <h3 className="h3-sub mb-6 text-brand">01. Pre-Production</h3>
+                  <p className="text-body text-white/60 mb-8">
                     Before the cameras roll, the magic of video production begins with pre-production. This is where your ideas take shape, scripts are written, and plans are made.
                   </p>
                   <div className="grid grid-cols-2 gap-4">
@@ -350,7 +350,7 @@ export default function ServicesPage() {
                       </div>
                       <div>
                         <h4 className="text-base font-bold mb-1">{item.title}</h4>
-                        <p className="text-xs text-white/60 leading-relaxed">{item.desc}</p>
+                        <p className="text-small text-white/60">{item.desc}</p>
                       </div>
                     </motion.div>
                   ))}
@@ -376,14 +376,14 @@ export default function ServicesPage() {
                       </div>
                       <div>
                         <h4 className="text-base font-bold mb-1">{item.title}</h4>
-                        <p className="text-xs text-white/60 leading-relaxed">{item.desc}</p>
+                        <p className="text-small text-white/60">{item.desc}</p>
                       </div>
                     </motion.div>
                   ))}
                 </div>
                 <div className="order-1 lg:order-2">
-                  <h3 className="text-2xl md:text-4xl font-display font-bold mb-6 uppercase tracking-tighter text-brand">02. Production</h3>
-                  <p className="text-base text-white/60 mb-8 leading-relaxed">
+                  <h3 className="h3-sub mb-6 text-brand">02. Production</h3>
+                  <p className="text-body text-white/60 mb-8">
                     The heart of video production lies in the production phase. This is where we turn your vision into reality.
                   </p>
                   <div className="grid grid-cols-2 gap-4">
@@ -398,8 +398,8 @@ export default function ServicesPage() {
             <div className="border border-white/10 rounded-[3rem] p-8 md:p-12 bg-white/[0.02] hover:bg-white/[0.04] transition-colors duration-500">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
                 <div>
-                  <h3 className="text-2xl md:text-4xl font-display font-bold mb-6 uppercase tracking-tighter text-brand">03. Post-Production</h3>
-                  <p className="text-base text-white/60 mb-8 leading-relaxed">
+                  <h3 className="h3-sub mb-6 text-brand">03. Post-Production</h3>
+                  <p className="text-body text-white/60 mb-8">
                     The real magic happens in post-production. This is where we take the raw footage and craft it into a polished, engaging video.
                   </p>
                   <div className="grid grid-cols-2 gap-4">
@@ -422,7 +422,7 @@ export default function ServicesPage() {
                       </div>
                       <div>
                         <h4 className="text-base font-bold mb-1">{item.title}</h4>
-                        <p className="text-xs text-white/60 leading-relaxed">{item.desc}</p>
+                        <p className="text-small text-white/60">{item.desc}</p>
                       </div>
                     </motion.div>
                   ))}
@@ -447,7 +447,7 @@ export default function ServicesPage() {
         >
           {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((item, i) => (
             <div key={i} className="flex items-center gap-12">
-              <span className="text-4xl md:text-6xl font-display font-black text-white/20 uppercase tracking-tighter">
+              <span className="text-4xl md:text-8xl font-display font-bold text-white/20 uppercase tracking-tighter">
                 {item}
               </span>
               <div className="w-4 h-4 rounded-full bg-brand" />
@@ -457,25 +457,25 @@ export default function ServicesPage() {
       </div>
 
       {/* CTA Section */}
-      <section className="py-32 px-6 md:px-12">
-        <div className="max-w-7xl mx-auto bg-ink text-white rounded-[4rem] p-12 md:p-24 text-center relative overflow-hidden border border-white/10">
+      <section className="py-20 px-6 md:px-12">
+        <div className="max-w-7xl mx-auto bg-ink text-white rounded-[4rem] p-8 md:p-16 text-center relative overflow-hidden border border-white/10">
           <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
             <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand rounded-full blur-[120px]" />
             <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600 rounded-full blur-[120px]" />
           </div>
           
           <Reveal>
-            <h2 className="text-5xl md:text-8xl font-display font-black tracking-tighter uppercase leading-[0.9] mb-8">
+            <h2 className="h2-section mb-8">
               Not limited to video, <br/> we're your <span className="text-brand">creative comrades.</span>
             </h2>
           </Reveal>
-          <p className="text-xl text-white/60 mb-12 max-w-2xl mx-auto">
+          <p className="text-body text-white/60 mb-12 max-text-width mx-auto">
             Got questions, project ideas, or just want to say hi? We're all ears!
           </p>
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-brand text-white px-12 py-6 rounded-full text-sm font-bold uppercase tracking-[0.3em] shadow-2xl flex items-center gap-4 mx-auto"
+            className="bg-brand text-white px-12 py-6 rounded-full nav-link shadow-2xl flex items-center gap-4 mx-auto"
           >
             Let's Collaborate
             <ArrowUpRight size={20} />

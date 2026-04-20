@@ -105,10 +105,10 @@ export default function Testimonials() {
                       />
                     </div>
                     <div className="flex flex-col">
-                      <h4 className={`font-bold text-slate-800 transition-all duration-500 ${isActive ? 'text-2xl' : 'text-base'}`}>
+                      <h4 className={`font-display font-medium text-slate-800 transition-all duration-500 ${isActive ? 'h4-small' : 'text-small'}`}>
                         {t.name}
                       </h4>
-                      <p className={`text-slate-500 font-medium transition-all duration-500 ${isActive ? 'text-sm' : 'text-xs'}`}>
+                      <p className={`text-slate-400 font-mono uppercase tracking-widest transition-all duration-500 ${isActive ? 'text-[10px]' : 'text-[8px]'}`}>
                         {t.company}
                       </p>
                     </div>
@@ -133,8 +133,8 @@ export default function Testimonials() {
                   transition={{ duration: 0.8, ease: "easeOut" }}
                   className="absolute inset-0 flex items-center"
                 >
-                  <div className="text-lg md:text-xl font-display font-medium text-slate-600 leading-relaxed tracking-tight">
-                    <p>{t.quote}</p>
+                  <div className="text-body font-display italic text-slate-600 max-text-width">
+                    <p>"{t.quote}"</p>
                   </div>
                 </motion.div>
               ))}

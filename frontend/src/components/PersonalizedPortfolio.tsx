@@ -1,55 +1,75 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence, useMotionValue, useTransform } from "motion/react";
 import { Reveal } from "./Reveal";
-import { Smartphone, Camera, Zap, MessageCircle, ChevronLeft, ChevronRight, Monitor, Play } from "lucide-react";
+import { Smartphone, Camera, Zap, MessageCircle, ChevronLeft, ChevronRight, Monitor, Play, ThumbsUp, MoveHorizontal } from "lucide-react";
 
 const PORTFOLIO_DATA = [
   { 
     id: 1, 
-    url: "https://www.dropbox.com/scl/fi/3sxr7j2ikyi1gu095v8jv/Comapny-teaser.mp4?rlkey=5zlzxe16mx48ohifoqcwpc998&st=3nmvs1hb&raw=1", 
-    title: "Company Teaser", 
-    subtitle: "brand overview",
-    client: "indiqube", 
-    category: "corporate",
-    logo: "teaser"
+    url: "https://res.cloudinary.com/dofg6bsom/video/upload/v1773762167/Trusted_since_1989_Serving_7_states_and_15k_families_with_farm-fresh_Nutrient-Rich_Pulses.Vi_hg5oq4.mp4", 
+    title: "Nutrient-Rich Pulses", 
+    subtitle: "Trusted since 1989",
+    client: "Biriyani Zest", 
+    category: "Reels",
+    badge: "social"
   },
   { 
     id: 2, 
-    url: "https://www.dropbox.com/scl/fi/evja43q96av8luo0eet44/Indiqube-Premier-League-Teaser.mp4?rlkey=iubtj6lo7e9zi02fxjbtkskur&st=qj9wg9mz&raw=1", 
-    title: "IPL Teaser", 
-    subtitle: "sports marketing",
-    client: "ipl", 
-    category: "sports",
-    logo: "ipl"
+    url: "https://res.cloudinary.com/dofg6bsom/video/upload/v1773762177/She_came_exploring_one_of_the_most_talked-about_places_in_Bangalore_and_now_we_re_talking_about_x5gv0o.mp4", 
+    title: "Exploring Bangalore", 
+    subtitle: "Cultural Discovery",
+    client: "Biriyani Zest", 
+    category: "Stories",
+    badge: "social"
   },
   { 
     id: 3, 
-    url: "https://www.dropbox.com/scl/fi/3sxr7j2ikyi1gu095v8jv/Comapny-teaser.mp4?rlkey=5zlzxe16mx48ohifoqcwpc998&st=3nmvs1hb&raw=1", 
-    title: "Corporate Narrative", 
-    subtitle: "storytelling",
-    client: "wissen", 
-    category: "narrative",
-    logo: "wissen"
+    url: "https://res.cloudinary.com/dofg6bsom/video/upload/v1775563219/Trump-_I_d_like_to_buy_Greenland._The_world-_Wait_what_Who_knew_real_estate_could_ge_zzyjan.mp4", 
+    title: "Trump Greenland", 
+    subtitle: "Real Estate Satire",
+    client: "Scale Socials", 
+    category: "Creative",
+    badge: "viral"
   },
   { 
     id: 4, 
-    url: "https://www.dropbox.com/scl/fi/evja43q96av8luo0eet44/Indiqube-Premier-League-Teaser.mp4?rlkey=iubtj6lo7e9zi02fxjbtkskur&st=qj9wg9mz&raw=1", 
-    title: "Event Highlights", 
-    subtitle: "live coverage",
-    client: "right it", 
-    category: "events",
-    logo: "awards"
+    url: "https://res.cloudinary.com/dofg6bsom/video/upload/v1775662435/An_authentic_Uttarakhand-style_dal_curry_prepared_in_traditional_way_This_traditional_dal_curry_yvrez8.mp4", 
+    title: "Uttarakhand Dal Curry", 
+    subtitle: "Traditional Cooking",
+    client: "Vijayalakshmi", 
+    category: "Reels",
+    badge: "authentic"
+  },
+  { 
+    id: 5, 
+    url: "https://res.cloudinary.com/dofg6bsom/video/upload/v1775662423/Authentic_Taste_Starts_with_the_Right_IngredientsFrom_soft_Idlis_crispy_Dosas_to_golden_Vadas_oxpgo9.mp4", 
+    title: "Authentic Ingredients", 
+    subtitle: "South Indian Taste",
+    client: "Vijayalakshmi", 
+    category: "Food",
+    badge: "social"
+  },
+  { 
+    id: 6, 
+    url: "https://res.cloudinary.com/dofg6bsom/video/upload/v1775662429/Even_a_penguin_ordered_biryani_Now_it_s_your_turn_Order_your_biryani_from_Biryani_Zest_A_ms2sgu.mp4", 
+    title: "Penguin AI Biriyani", 
+    subtitle: "Creative Campaign",
+    client: "Biriyani Zest", 
+    category: "Reels",
+    badge: "creative"
   }
 ];
 
-const MediaRenderer = ({ url, isActive }: { url: string, isActive?: boolean }) => {
+const MediaRenderer = ({ url, isActive, thumbnailOnly, id, contain, rotate }: { url: string, isActive?: boolean, thumbnailOnly?: boolean, id?: number, contain?: boolean, rotate?: boolean }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPaused, setIsPaused] = useState(false);
   const [isImage, setIsImage] = useState(false);
+  const isYouTube = url.includes("youtube.com") || url.includes("youtu.be");
+  const isInstagram = url.includes("instagram.com");
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video || isImage) return;
+    if (!video || isImage || isYouTube || isInstagram || thumbnailOnly) return;
 
     if (isActive !== false) {
       video.muted = true;
@@ -66,10 +86,10 @@ const MediaRenderer = ({ url, isActive }: { url: string, isActive?: boolean }) =
       video.pause();
       setIsPaused(true);
     }
-  }, [isActive, url, isImage]);
+  }, [isActive, url, isImage, isYouTube, isInstagram, thumbnailOnly]);
 
   const handleToggle = () => {
-    if (isImage || !videoRef.current) return;
+    if (isImage || isYouTube || isInstagram || thumbnailOnly || !videoRef.current) return;
     if (videoRef.current.paused) {
       videoRef.current.play().then(() => setIsPaused(false));
     } else {
@@ -77,6 +97,45 @@ const MediaRenderer = ({ url, isActive }: { url: string, isActive?: boolean }) =
       setIsPaused(true);
     }
   };
+
+  const mediaClass = `w-full h-full ${contain ? "object-contain" : "object-cover"} ${rotate ? "-rotate-90 scale-[1.78]" : ""}`;
+
+  if (thumbnailOnly) {
+    let thumbUrl = url;
+    if (isYouTube) {
+      thumbUrl = `https://img.youtube.com/vi/${url.split('/').pop()?.split('?')[0]}/maxresdefault.jpg`;
+    } else if (isInstagram) {
+      thumbUrl = `https://picsum.photos/seed/insta-${id}/1200/800`;
+    } else if (url.includes("cloudinary.com")) {
+      thumbUrl = url.replace("/video/upload/", "/video/upload/so_0/").replace(".mp4", ".jpg");
+    }
+    return (
+      <div className="w-full h-full relative bg-neutral-900 overflow-hidden">
+        <img 
+          src={thumbUrl} 
+          alt="Project Thumbnail" 
+          className={mediaClass}
+          referrerPolicy="no-referrer"
+        />
+        <div className="absolute inset-0 bg-black/40" />
+      </div>
+    );
+  }
+
+  if (isYouTube || isInstagram) {
+    const embedUrl = isYouTube ? url : `${url.split('?')[0]}embed`;
+    return (
+      <div className="w-full h-full relative bg-neutral-900 overflow-hidden">
+        <iframe 
+          src={embedUrl} 
+          className={mediaClass}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowFullScreen
+          title={isYouTube ? "YouTube video player" : "Instagram reel player"}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="w-full h-full relative bg-neutral-900 overflow-hidden" onClick={handleToggle}>
@@ -90,19 +149,19 @@ const MediaRenderer = ({ url, isActive }: { url: string, isActive?: boolean }) =
           autoPlay
           preload="auto"
           onError={() => setIsImage(true)}
-          className="w-full h-full object-cover"
+          className={mediaClass}
         />
       ) : (
         <img 
           src={url} 
           alt="Project" 
-          className="w-full h-full object-cover"
+          className={mediaClass}
           referrerPolicy="no-referrer"
         />
       )}
       
       {!isImage && isPaused && isActive !== false && (
-        <div className="absolute inset-0 flex items-center justify-center bg-black/20 backdrop-blur-[2px] pointer-events-none">
+        <div className="absolute inset-0 flex items-center justify-center bg-black/20 backdrop-blur-[2px] pointer-events-none z-10">
           <div className="w-16 h-16 rounded-full bg-white/20 border border-white/40 flex items-center justify-center text-white">
             <Play size={32} fill="currentColor" />
           </div>
@@ -120,24 +179,32 @@ interface CardProps {
   key?: React.Key;
 }
 
-const PortfolioCard = ({ item, index, activeIndex, onSwipe }: CardProps) => {
+const PortfolioCard = ({ item, index, activeIndex, onSwipe, total }: CardProps & { total: number }) => {
   const x = useMotionValue(0);
-  const rotateValue = useTransform(x, [-200, 200], [-25, 25]);
-  const opacity = useTransform(x, [-200, -150, 0, 150, 200], [0, 1, 1, 1, 0]);
+  const rotateValue = useTransform(x, [-200, 200], [-15, 15]);
+  const opacityValue = useTransform(x, [-200, -150, 0, 150, 200], [0, 1, 1, 1, 0]);
   
   const isActive = index === activeIndex;
-  const diff = index - activeIndex;
   
-  const fanRotate = diff * 12;
-  const fanX = diff * 70;
-  const fanY = Math.abs(diff) * 15;
-  const fanZ = -Math.abs(diff) * 100;
-  const fanScale = 1 - Math.abs(diff) * 0.08;
+  // Symmetrical Circular Logic
+  let diff = index - activeIndex;
+  if (diff > total / 2) diff -= total;
+  if (diff <= -total / 2) diff += total;
+
+  const isOpposite = total % 2 === 0 && Math.abs(diff) === total / 2;
+  const isVisible = Math.abs(diff) <= 2 && !isOpposite;
+  
+  // Tighter Fan Logic
+  const fanRotate = diff * 8;
+  const fanX = diff * 40;
+  const fanY = Math.abs(diff) * 8;
+  const fanZ = -Math.abs(diff) * 20;
+  const fanScale = 1 - Math.abs(diff) * 0.04;
 
   const handleDragEnd = (_: any, info: any) => {
-    if (info.offset.x > 50) {
+    if (info.offset.x > 80) {
       onSwipe(-1);
-    } else if (info.offset.x < -50) {
+    } else if (info.offset.x < -80) {
       onSwipe(1);
     }
     x.set(0);
@@ -145,19 +212,20 @@ const PortfolioCard = ({ item, index, activeIndex, onSwipe }: CardProps) => {
 
   return (
     <motion.div
-      drag="x"
+      drag={isActive ? "x" : false}
       dragConstraints={{ left: 0, right: 0 }}
-      dragElastic={0.7}
+      dragElastic={isActive ? 0.7 : 0}
       onDragEnd={handleDragEnd}
-      className="absolute w-[240px] md:w-[280px] aspect-[9/16] rounded-[2rem] overflow-hidden border-4 border-white shadow-2xl bg-black cursor-grab active:cursor-grabbing touch-none"
+      className={`absolute w-[180px] md:w-[220px] aspect-[9/16] rounded-[2rem] overflow-hidden border-[4px] border-white shadow-[0_20px_40px_-10px_rgba(0,0,0,0.8)] bg-black cursor-grab active:cursor-grabbing touch-none transition-shadow ${isActive ? "shadow-white/10" : ""}`}
       style={{ 
         x: isActive ? x : fanX, 
         y: isActive ? 0 : fanY,
         rotate: isActive ? rotateValue : fanRotate,
-        opacity: isActive ? opacity : 1,
+        opacity: isActive ? opacityValue : isVisible ? 1 : 0,
         zIndex: 100 - Math.abs(diff),
         perspective: 1000,
-        touchAction: 'none'
+        touchAction: 'none',
+        display: isVisible || isActive ? 'block' : 'none'
       }}
       initial={false}
       animate={{
@@ -166,38 +234,56 @@ const PortfolioCard = ({ item, index, activeIndex, onSwipe }: CardProps) => {
         rotate: isActive ? 0 : fanRotate,
         z: fanZ,
         scale: fanScale,
-        filter: isActive ? "blur(0px)" : "blur(2px)",
+        filter: isActive ? "blur(0px)" : "blur(1px) brightness(0.6)",
+      }}
+      transition={{ 
+        type: "spring", 
+        stiffness: 260, 
+        damping: 26 
       }}
     >
-      <MediaRenderer url={item.url} isActive={isActive} />
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-6 left-1/2 -translate-x-1/2">
-          <span className="text-white font-serif italic text-2xl opacity-80">{item.logo}</span>
-        </div>
-        <div className="absolute top-8 right-4 bg-white/90 backdrop-blur-sm px-2 py-0.5 rounded-full flex items-center gap-1 shadow-lg">
-          <Smartphone size={10} className="text-black" />
-          <span className="text-[8px] font-bold uppercase tracking-tighter text-black">{item.category}</span>
+      <MediaRenderer url={item.url} isActive={isActive} thumbnailOnly={!isActive} id={item.id} />
+      
+      {/* Social Badge */}
+      <div className="absolute top-6 right-6 z-20">
+        <div className="bg-white px-3 py-1.5 rounded-xl flex items-center gap-2 shadow-xl">
+           <ThumbsUp size={12} className="text-black fill-black" />
+           <span className="text-[10px] font-black uppercase tracking-tighter text-black lowercase">{item.badge}</span>
         </div>
       </div>
+
+      {/* Decorative Camera Icon like in image */}
+      {isActive && (
+        <div className="absolute bottom-4 left-4 z-20">
+           <motion.div 
+             initial={{ opacity: 0, scale: 0.8 }}
+             animate={{ opacity: 1, scale: 1 }}
+             className="w-10 h-10 border-2 border-white/30 rounded-2xl flex items-center justify-center bg-black/20 backdrop-blur-sm"
+           >
+              <Camera size={18} className="text-white/60" />
+           </motion.div>
+        </div>
+      )}
     </motion.div>
   );
 };
 
 export default function PersonalizedPortfolio() {
-  const [portfolioData, setPortfolioData] = useState(PORTFOLIO_DATA);
+  const [shortProjects, setShortProjects] = useState<any[]>(PORTFOLIO_DATA);
+  const [longProjects, setLongProjects] = useState<any[]>([]);
   const [shortIndex, setShortIndex] = useState(0);
   const [longIndex, setLongIndex] = useState(0);
-  const [showNudge, setShowNudge] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/api/projects");
-        if (response.ok) {
-          const data = await response.json();
-          if (data && data.length > 0) {
-            setPortfolioData(data);
-          }
+        const [longRes] = await Promise.all([
+          fetch("/api/projects/long")
+        ]);
+        
+        if (longRes.ok) {
+          const data = await longRes.json();
+          if (data && data.length > 0) setLongProjects(data);
         }
       } catch (error) {
         console.error("Failed to fetch projects:", error);
@@ -207,150 +293,203 @@ export default function PersonalizedPortfolio() {
   }, []);
 
   const handleShortSwipe = (direction: number) => {
-    setShowNudge(false);
     setShortIndex((prev) => {
       const next = prev + direction;
-      if (next < 0) return portfolioData.length - 1;
-      if (next >= portfolioData.length) return 0;
+      if (next < 0) return shortProjects.length - 1;
+      if (next >= shortProjects.length) return 0;
       return next;
     });
   };
 
-  const nextLong = () => setLongIndex((prev) => (prev + 1) % portfolioData.length);
-  const prevLong = () => setLongIndex((prev) => (prev - 1 + portfolioData.length) % portfolioData.length);
+  const nextLong = () => setLongIndex((prev) => (prev + 1) % longProjects.length);
+  const prevLong = () => setLongIndex((prev) => (prev - 1 + longProjects.length) % longProjects.length);
 
-  const activeShort = portfolioData[shortIndex];
-  const activeLong = portfolioData[longIndex];
+  const activeShort = shortProjects[shortIndex];
+  const activeLong = longProjects[longIndex];
 
   return (
-    <section className="relative min-h-screen bg-black overflow-hidden py-40 md:py-56 px-6 md:px-12">
+    <section className="relative min-h-screen bg-black overflow-hidden py-16 px-6 md:px-12">
+      {/* Background Orbs */}
+      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-brand/5 rounded-full blur-[160px] pointer-events-none -z-10" />
+      <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-blue-600/5 rounded-full blur-[160px] pointer-events-none -z-10" />
+
+      {/* Background Doodles - Scattered artistic elements */}
+      <div className="absolute inset-0 pointer-events-none opacity-20 z-0">
+        <motion.svg 
+          animate={{ rotate: [0, 10, 0] }}
+          transition={{ duration: 5, repeat: Infinity }}
+          className="absolute top-[15%] left-[5%] w-12 h-12 text-brand" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/>
+        </motion.svg>
+        <motion.svg 
+          animate={{ scale: [1, 1.1, 1] }}
+          transition={{ duration: 4, repeat: Infinity }}
+          className="absolute bottom-[20%] right-[10%] w-24 h-24 text-white rotate-45" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M20,80 Q50,20 80,80" strokeLinecap="round" />
+          <path d="M70,70 L80,80 L90,70" strokeLinecap="round" />
+        </motion.svg>
+      </div>
+
       {/* Section Heading */}
-      <div className="max-w-7xl mx-auto mb-40">
+      <div className="max-w-7xl mx-auto mb-16 text-center pointer-events-none">
         <Reveal>
-          <h2 className="text-7xl md:text-9xl font-display font-black text-white uppercase tracking-tighter leading-none text-center">
-            Our selected <br />
-            <span className="text-brand italic font-serif lowercase">portfolio</span>
-          </h2>
+          <span className="text-brand font-mono text-[10px] uppercase tracking-[0.4em] mb-2 block">Our Work</span>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <h1 className="text-5xl md:text-7xl font-display font-black text-white uppercase italic tracking-tighter">
+            Selected <span className="text-brand">Portfolio</span>
+          </h1>
         </Reveal>
       </div>
 
-      <div className="max-w-7xl mx-auto space-y-48">
+      <div className="max-w-7xl mx-auto space-y-32">
         
-        {/* Short Form Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
-          <div className="order-1 md:order-1">
-            <Reveal>
-              <span className="text-brand font-mono text-xs uppercase tracking-[0.3em] mb-6 block">01 / Vertical</span>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <h3 className="text-5xl md:text-7xl font-display font-black text-white uppercase tracking-tighter leading-[0.8] mb-8">
-                Short <br /> Form
-              </h3>
-            </Reveal>
-            <Reveal delay={0.2}>
-              <p className="text-white/60 text-lg max-w-md mb-12 font-light leading-relaxed">
-                Capturing attention in seconds. Our short-form content is designed for the scroll, optimized for engagement, and built for impact.
-              </p>
-            </Reveal>
-          </div>
+        {/* Short Form Section - Stacked Layout Like Image */}
+        <div className="flex flex-col items-center">
+          <div className="relative w-full h-[400px] md:h-[480px] flex items-center justify-center perspective-1000 mb-6">
+            
+            {/* SVG Decorations Like Image */}
+            <div className="absolute inset-0 pointer-events-none z-0">
+               {/* Swipe Indicator Doodle */}
+               <motion.div 
+                 initial={{ opacity: 0, y: 10 }}
+                 animate={{ opacity: 1, y: 0 }}
+                 className="absolute -bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 z-30"
+               >
+                  <motion.div 
+                    animate={{ x: [-10, 10, -10] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    className="flex items-center gap-2 text-white/40"
+                  >
+                    <ChevronLeft size={14} className="text-brand" />
+                    <span className="text-[10px] font-mono uppercase tracking-[0.2em] whitespace-nowrap">Swipe to explore</span>
+                    <ChevronRight size={14} className="text-brand" />
+                  </motion.div>
+                  <svg className="w-20 h-4 text-brand/30" viewBox="0 0 100 20">
+                    <path d="M10,15 Q50,5 90,15" fill="none" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 2" />
+                  </svg>
+               </motion.div>
 
-          <div className="order-2 md:order-2 flex flex-col items-center">
-            <div className="relative w-full h-[500px] flex items-center justify-center perspective-1000 mb-12">
+               {/* Left Squiggles */}
+               <svg className="absolute top-10 left-[15%] w-24 h-24 text-white/10 -rotate-12" viewBox="0 0 100 100">
+                  <path d="M10,20 c15,0 15,40 30,40 s15,-40 30,-40 s15,40 30,40" fill="none" stroke="currentColor" strokeWidth="2" />
+                  <path d="M10,40 c15,0 15,40 30,40 s15,-40 30,-40 s15,40 30,40" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.5" />
+               </svg>
+               
+               {/* Right Shape (Light Green Bubble) */}
+               <div className="absolute bottom-10 right-[15%] w-32 h-32 opacity-10 rotate-12">
+                  <svg className="w-full h-full text-[#E4FFC8]" viewBox="0 0 100 100">
+                     <path d="M20,20 L80,10 L90,60 L60,90 L10,80 Z" fill="currentColor" />
+                  </svg>
+               </div>
+            </div>
+
+            <div className="relative w-full h-full flex items-center justify-center">
               <AnimatePresence initial={false}>
-                {portfolioData.map((item, i) => (
+                {shortProjects.map((item, i) => (
                   <PortfolioCard 
-                    key={item.id} 
+                    key={`${item.id}-${i}`}
                     item={item} 
                     index={i} 
                     activeIndex={shortIndex} 
                     onSwipe={handleShortSwipe}
+                    total={shortProjects.length}
                   />
                 ))}
               </AnimatePresence>
-              
-              {showNudge && (
-                <motion.div 
-                  animate={{ x: [-10, 10, -10] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="absolute -bottom-12 text-white/30 font-mono text-[10px] uppercase tracking-widest"
-                >
-                  Swipe to explore
-                </motion.div>
-              )}
             </div>
+          </div>
 
-            <div className="text-center">
-              <AnimatePresence mode="wait">
+          {/* Active Card Text Details */}
+          <div className="text-center mt-4 max-w-2xl mx-auto">
+             <AnimatePresence mode="wait">
                 <motion.div
-                  key={shortIndex}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className="space-y-2"
+                   key={shortIndex}
+                   initial={{ opacity: 0, y: 20 }}
+                   animate={{ opacity: 1, y: 0 }}
+                   exit={{ opacity: 0, y: -20 }}
+                   transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                   className="space-y-4"
                 >
-                  <div className="bg-[#FFB2FF] text-black px-4 py-1 rounded-full inline-block mb-2">
-                    <span className="text-[10px] font-bold uppercase tracking-tight">{activeShort?.client}</span>
-                  </div>
-                  <h4 className="text-2xl md:text-3xl font-display font-black text-white uppercase tracking-tighter">{activeShort?.title}</h4>
-                  <p className="text-sm md:text-base text-white/40 font-display font-black uppercase tracking-tighter">{activeShort?.subtitle}</p>
+                   <div className="bg-[#FFB2FF] text-black px-4 py-1 rounded-full inline-block mb-1 shadow-md">
+                      <span className="text-[10px] font-black tracking-wider italic lowercase">{activeShort?.client}</span>
+                   </div>
+                   
+                   <h2 className="text-3xl md:text-5xl font-display font-bold text-white tracking-tighter leading-none lowercase">
+                      {activeShort?.title}
+                   </h2>
+
+                   <div className="flex flex-col items-center gap-4">
+                      <p className="text-white/40 font-mono text-[10px] uppercase tracking-[0.4em] lowercase">
+                         {activeShort?.subtitle}
+                      </p>
+
+                      <div className="group relative cursor-pointer inline-flex items-center gap-3">
+                         <span className="text-white font-sans text-base font-medium tracking-tight border-b border-white/20 pb-0.5 group-hover:text-brand group-hover:border-brand transition-all lowercase">
+                            View project
+                         </span>
+                         <motion.div 
+                            className="w-1 h-1 bg-brand rounded-full"
+                            animate={{ opacity: [1, 0.4, 1], scale: [1, 1.2, 1] }}
+                            transition={{ duration: 2, repeat: Infinity }}
+                         />
+                      </div>
+                   </div>
                 </motion.div>
-              </AnimatePresence>
-            </div>
+             </AnimatePresence>
           </div>
         </div>
 
-        {/* Long Form Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
-          <div className="order-1 md:order-2">
+        {/* Long Form Section - Consistent Horizontal Frame with Rotation for First Video */}
+        <div className="max-w-7xl mx-auto flex flex-col items-center">
+          <div className="text-center mb-8 px-6">
             <Reveal>
-              <span className="text-brand font-mono text-xs uppercase tracking-[0.3em] mb-6 block">02 / Narrative</span>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <h3 className="text-5xl md:text-7xl font-display font-black text-white uppercase tracking-tighter leading-[0.8] mb-8">
-                Long <br /> Form
+              <h3 className="h2-section text-white mb-2 uppercase tracking-tighter">
+                Long <span className="text-brand">Form</span>
               </h3>
-            </Reveal>
-            <Reveal delay={0.2}>
-              <p className="text-white/60 text-lg max-w-md mb-12 font-light leading-relaxed">
-                Immersive storytelling that resonates. Our long-form narratives dive deep into brand values, creating lasting connections with your audience.
-              </p>
             </Reveal>
           </div>
 
-          <div className="order-2 md:order-1 flex flex-col items-center">
-            <div className="relative group w-full mb-6">
-              {/* Laptop Frame */}
-              <div className="relative w-full aspect-video bg-neutral-900 rounded-xl border-[12px] border-neutral-800 shadow-2xl overflow-hidden">
+          <div className="w-full flex flex-col items-center">
+            {/* Fixed Horizontal Sizing Container */}
+            <div className="relative group w-full max-w-2xl mb-8">
+              <div className="relative w-full aspect-video bg-neutral-900 rounded-[2rem] border-[6px] md:border-[10px] border-neutral-800 shadow-2xl overflow-hidden ring-1 ring-white/10">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeLong?.id}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
+                    transition={{ duration: 0.4 }}
                     className="w-full h-full"
                   >
-                    {activeLong && <MediaRenderer url={activeLong.url} isActive={true} />}
+                    {activeLong && (
+                       <MediaRenderer 
+                          url={activeLong.url} 
+                          isActive={true} 
+                          rotate={activeLong?.aspect === "horizontal"}
+                          id={activeLong.id}
+                       />
+                    )}
                   </motion.div>
                 </AnimatePresence>
                 
-                {/* Laptop Camera Hole */}
-                <div className="absolute top-2 left-1/2 -translate-x-1/2 w-2 h-2 bg-black rounded-full border border-white/10" />
+                {/* Decorative Elements */}
+                <div className="absolute top-1/2 left-2 -translate-y-1/2 w-1 h-8 bg-neutral-700/50 rounded-full" />
+                <div className="absolute top-1/2 right-2 -translate-y-1/2 w-1 h-8 bg-neutral-700/50 rounded-full" />
               </div>
-              {/* Laptop Base */}
-              <div className="h-4 w-[105%] -ml-[2.5%] bg-neutral-800 rounded-b-xl shadow-xl" />
             </div>
 
-            {/* Navigation Arrows below Laptop */}
-            <div className="flex gap-4 mb-8">
+            <div className="flex gap-4 mb-6">
               <button 
                 onClick={prevLong}
-                className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-brand hover:border-brand hover:text-black transition-all"
+                className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-brand hover:border-brand hover:text-black transition-all"
               >
                 <ChevronLeft size={20} />
               </button>
               <button 
                 onClick={nextLong}
-                className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-brand hover:border-brand hover:text-black transition-all"
+                className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-brand hover:border-brand hover:text-black transition-all"
               >
                 <ChevronRight size={20} />
               </button>
@@ -359,17 +498,16 @@ export default function PersonalizedPortfolio() {
             <div className="text-center">
               <AnimatePresence mode="wait">
                 <motion.div
-                  key={longIndex}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className="space-y-2"
+                   key={longIndex}
+                   initial={{ opacity: 0, y: 10 }}
+                   animate={{ opacity: 1, y: 0 }}
+                   exit={{ opacity: 0, y: -10 }}
+                   className="space-y-1"
                 >
-                  <div className="bg-brand text-black px-4 py-1 rounded-full inline-block mb-2">
-                    <span className="text-[10px] font-bold uppercase tracking-tight">{activeLong?.client}</span>
-                  </div>
-                  <h4 className="text-2xl md:text-3xl font-display font-black text-white uppercase tracking-tighter">{activeLong?.title}</h4>
-                  <p className="text-sm md:text-base text-white/40 font-display font-black uppercase tracking-tighter">{activeLong?.subtitle}</p>
+                   <div className="bg-brand/10 border border-brand/20 text-brand px-4 py-1 rounded-full inline-block">
+                      <span className="text-[10px] font-bold uppercase tracking-[0.2em]">{activeLong?.client}</span>
+                   </div>
+                   <h4 className="text-2xl md:text-4xl font-display font-bold text-white tracking-tighter uppercase italic">{activeLong?.title}</h4>
                 </motion.div>
               </AnimatePresence>
             </div>
@@ -377,19 +515,6 @@ export default function PersonalizedPortfolio() {
         </div>
 
       </div>
-
-      {/* Background Graphics */}
-      <div className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-brand/5 rounded-full blur-[120px] pointer-events-none -z-10" />
-      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-brand/5 rounded-full blur-[100px] pointer-events-none -z-10" />
-
-      <style>{`
-        .font-serif {
-          font-family: 'Libre Baskerville', serif;
-        }
-        .perspective-1000 {
-          perspective: 1000px;
-        }
-      `}</style>
     </section>
   );
 }

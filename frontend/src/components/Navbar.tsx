@@ -44,7 +44,7 @@ export default function Navbar() {
               </svg>
             </div>
             <div className="flex flex-col items-start">
-              <span className="font-display font-black tracking-tighter uppercase text-xl text-white group-hover/logo:text-brand transition-colors">boomerang</span>
+              <span className="font-display font-bold tracking-tighter uppercase text-xl text-white group-hover/logo:text-brand transition-colors">boomerang</span>
               <span className="text-[8px] font-mono uppercase tracking-[0.4em] text-white/30 -mt-1 group-hover/logo:text-white/60 transition-colors">studios</span>
             </div>
           </Link>
@@ -56,7 +56,7 @@ export default function Navbar() {
                 <Link 
                   key={link.name}
                   to={link.path} 
-                  className="relative text-[11px] font-mono uppercase tracking-[0.2em] text-white/50 hover:text-white transition-colors group/link"
+                  className="relative nav-link text-white/50 hover:text-white transition-colors group/link"
                 >
                   {link.name}
                   <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-brand transition-all duration-300 group-hover/link:w-full" />

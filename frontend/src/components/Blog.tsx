@@ -34,7 +34,7 @@ export default function Blog() {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="text-3xl md:text-5xl font-display font-black text-white uppercase tracking-tight"
+              className="h2-section text-white"
             >
               Dive into <span className="text-brand">our blogs</span>
             </motion.h2>
@@ -68,12 +68,12 @@ export default function Blog() {
               </div>
               <div className="space-y-3">
                 <div className="flex items-center gap-4">
-                  <span className="text-brand font-mono text-[10px] font-bold uppercase tracking-widest">{blog.category}</span>
+                  <span className="text-brand font-sans text-[11px] font-bold uppercase tracking-widest">{blog.category}</span>
                 </div>
-                <h3 className="text-xl font-display font-bold text-white uppercase tracking-tight group-hover:text-brand transition-colors">
+                <h3 className="h4-small text-white group-hover:text-brand transition-colors">
                   {blog.title}
                 </h3>
-                <div className="flex items-center gap-4 text-white/40 font-mono text-[10px] uppercase tracking-widest">
+                <div className="flex items-center gap-4 text-white/40 text-small uppercase tracking-widest">
                   <span>{blog.author}</span>
                   <span>•</span>
                   <span>{blog.date}</span>

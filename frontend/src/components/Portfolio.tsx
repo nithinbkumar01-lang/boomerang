@@ -215,7 +215,7 @@ export default function Portfolio() {
               </span>
             </Reveal>
             <Reveal delay={0.1}>
-              <h2 className="text-5xl md:text-7xl font-display font-bold uppercase tracking-tighter leading-[0.9] mb-8">
+              <h2 className="h2-section text-white !leading-[0.9] mb-8">
                 Short Form <br />
                 <span className="font-serif italic lowercase text-brand">Content</span>
               </h2>
@@ -246,7 +246,7 @@ export default function Portfolio() {
               </span>
             </Reveal>
             <Reveal delay={0.1}>
-              <h2 className="text-5xl md:text-7xl font-display font-bold uppercase tracking-tighter leading-[0.9] mb-8">
+              <h2 className="h2-section text-white !leading-[0.9] mb-8">
                 Long Form <br />
                 <span className="font-serif italic lowercase text-brand">Narratives</span>
               </h2>

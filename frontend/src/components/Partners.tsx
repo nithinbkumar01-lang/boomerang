@@ -20,7 +20,7 @@ export default function Partners() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-2xl md:text-3xl font-display font-bold text-white uppercase tracking-tight"
+          className="h3-sub text-white"
         >
           Standing Tall With Our <span className="text-brand">Esteemed Brand Partners</span>
         </motion.h2>
@@ -51,7 +51,7 @@ export default function Partners() {
             {[...logos, ...logos, ...logos, ...logos].map((logo, idx) => (
               <div key={idx} className="flex items-center gap-4 group cursor-default">
                 <span className="text-white group-hover:text-brand transition-colors">{logo.icon}</span>
-                <span className="text-sm font-mono uppercase tracking-[0.2em] font-bold text-white group-hover:text-brand transition-colors">{logo.name}</span>
+                <span className="text-[11px] font-sans font-bold uppercase tracking-[0.2em] text-white group-hover:text-brand transition-colors">{logo.name}</span>
               </div>
             ))}
           </motion.div>

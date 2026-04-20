@@ -55,10 +55,10 @@ export default function Showreel() {
           {/* Overlay info */}
           <div className="absolute bottom-8 left-8 right-8 flex justify-between items-end">
             <div className="text-white">
-              <p className="font-mono text-[10px] uppercase tracking-widest opacity-60 mb-2">Vertora Studio</p>
-              <h3 className="text-2xl font-display font-bold uppercase tracking-tight">2024 Reel</h3>
+              <p className="text-small uppercase tracking-widest opacity-60 mb-2">Vertora Studio</p>
+              <h3 className="h3-sub text-white">2024 Reel</h3>
             </div>
-            <div className="text-white/40 font-mono text-[10px] uppercase tracking-widest">
+            <div className="text-white/40 text-small uppercase tracking-widest">
               ( 02:45 )
             </div>
           </div>

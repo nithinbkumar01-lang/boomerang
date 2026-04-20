@@ -118,7 +118,7 @@ export default function NeedsSection() {
     <section className="pt-32 pb-64 md:pb-32 px-6 md:px-12 bg-[#F2EDE4] overflow-hidden">
       <div className="max-w-7xl mx-auto text-center mb-24">
         <Reveal>
-          <h2 className="text-6xl md:text-8xl font-display font-black tracking-tighter uppercase leading-[0.8]">
+          <h2 className="h1-display">
             call us if you <span className="relative">
               need:
               <svg className="absolute -bottom-4 left-0 w-full h-4 text-ink/20" viewBox="0 0 200 20" preserveAspectRatio="none">
@@ -171,7 +171,7 @@ export default function NeedsSection() {
             >
               {card.sticker}
               
-              <h3 className="text-3xl font-display font-black uppercase tracking-tighter mb-8 leading-none">
+              <h3 className="h4-small mb-8 !leading-none">
                 {card.title}
               </h3>
               
@@ -179,7 +179,7 @@ export default function NeedsSection() {
               
               <ul className="space-y-3">
                 {card.items.map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-sm font-medium leading-tight">
+                   <li key={idx} className="flex items-start gap-3 text-small font-medium leading-tight">
                     <span className="text-white/60 mt-1">✦</span>
                     {item}
                   </li>

@@ -53,7 +53,7 @@ export default function WorkPage() {
         
         <div className="relative z-10 max-w-4xl">
           <Reveal>
-            <h1 className="text-6xl md:text-8xl font-display font-bold uppercase tracking-tighter mb-6">
+            <h1 className="h1-display mb-6">
               Our Projects
             </h1>
           </Reveal>
@@ -61,7 +61,7 @@ export default function WorkPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="text-white/60 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed"
+            className="text-white/60 text-body max-text-width mx-auto"
           >
             From coming up with creative concepts to delivering outstanding campaigns, we're your friendly, fun-loving crew ready to turn your project dreams into reality!
           </motion.p>
@@ -69,13 +69,13 @@ export default function WorkPage() {
       </section>
 
       {/* Filters */}
-      <section className="py-12 px-6 border-b border-white/10">
+      <section className="py-8 px-6 border-b border-white/10">
         <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-3">
           {CATEGORIES.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-6 py-2 rounded-full text-[10px] font-mono uppercase tracking-widest transition-all ${
+              className={`px-6 py-2 rounded-full nav-link transition-all ${
                 activeCategory === cat 
                 ? "bg-white text-black" 
                 : "bg-white/5 text-white/40 hover:bg-white/10 hover:text-white"
@@ -88,7 +88,7 @@ export default function WorkPage() {
       </section>
 
       {/* Projects Grid */}
-      <section className="py-24 px-6 md:px-12">
+      <section className="py-16 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">
           {loading ? (
             <div className="flex justify-center py-32">
@@ -111,7 +111,11 @@ export default function WorkPage() {
                     onClick={() => navigate(`/project/${project.id}`)}
                     className="group cursor-pointer"
                   >
-                    <div className="relative aspect-video rounded-2xl overflow-hidden mb-6 bg-neutral-900 border border-white/5">
+                    <div className={`relative ${
+                      project.category === "Reels" || project.category === "AI Reels"
+                        ? "aspect-[9/16] max-w-[300px] mx-auto" 
+                        : "aspect-video"
+                    } rounded-2xl overflow-hidden mb-6 bg-neutral-900 border border-white/5`}>
                       {/* Category Badge */}
                       <div className="absolute top-4 left-4 z-10">
                         <div className="bg-black/40 backdrop-blur-md border border-white/10 px-3 py-1 rounded-full">
@@ -121,21 +125,47 @@ export default function WorkPage() {
                         </div>
                       </div>
                       
-                      <video 
-                        src={project.url} 
-                        muted 
-                        loop 
-                        onMouseOver={(e) => (e.target as HTMLVideoElement).play()}
-                        onMouseOut={(e) => (e.target as HTMLVideoElement).pause()}
-                        className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
-                      />
+                      {project.url.includes("youtube.com") || project.url.includes("youtu.be") ? (
+                        <img 
+                          src={`https://img.youtube.com/vi/${project.url.split('/').pop()?.split('?')[0]}/maxresdefault.jpg`}
+                          alt={project.title}
+                          className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                          referrerPolicy="no-referrer"
+                        />
+                      ) : project.url.includes("instagram.com") ? (
+                        <img 
+                          src={`https://picsum.photos/seed/insta-${project.id}/1200/800`}
+                          alt={project.title}
+                          className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                          referrerPolicy="no-referrer"
+                        />
+                      ) : project.url.includes("cloudinary.com") ? (
+                        <img 
+                          src={project.url.replace("/video/upload/", "/video/upload/so_0/").replace(".mp4", ".jpg")}
+                          alt={project.title}
+                          className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                          referrerPolicy="no-referrer"
+                        />
+                      ) : (
+                        <video 
+                          src={project.url} 
+                          muted 
+                          loop 
+                          onMouseOver={(e) => (e.target as HTMLVideoElement).play()}
+                          onMouseOut={(e) => (e.target as HTMLVideoElement).pause()}
+                          className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                        />
+                      )}
                     </div>
                     
-                    <div className="space-y-1">
-                      <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/40 block">
-                        {project.client}
-                      </span>
-                      <h3 className="text-xl font-display font-bold uppercase tracking-tight group-hover:text-brand transition-colors">
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2">
+                        <div className="w-4 h-[1px] bg-brand" />
+                        <span className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-white/40">
+                          {project.client}
+                        </span>
+                      </div>
+                      <h3 className="text-xl md:text-2xl font-display italic group-hover:text-brand transition-colors leading-tight">
                         {project.title}
                       </h3>
                     </div>
@@ -149,13 +179,39 @@ export default function WorkPage() {
 
       <ClientLogos variant="dark" />
 
+      {/* Marquee */}
+      <div className="py-12 bg-black overflow-hidden border-y border-white/10">
+        <motion.div 
+          animate={{ x: [0, -1000] }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="flex gap-12 whitespace-nowrap items-center"
+        >
+          {["VFX", "Filming", "Scriptwriting", "Sound Design", "Color Grading", "Editing", "Motion Graphics", "3D Modeling"].map((item, i) => (
+            <div key={i} className="flex items-center gap-12">
+              <span className="text-4xl md:text-8xl font-display font-bold text-white/10 uppercase tracking-tighter">
+                {item}
+              </span>
+              <div className="w-4 h-4 rounded-full bg-brand" />
+            </div>
+          ))}
+          {["VFX", "Filming", "Scriptwriting", "Sound Design", "Color Grading", "Editing", "Motion Graphics", "3D Modeling"].map((item, i) => (
+            <div key={i + 100} className="flex items-center gap-12">
+              <span className="text-4xl md:text-8xl font-display font-bold text-white/10 uppercase tracking-tighter">
+                {item}
+              </span>
+              <div className="w-4 h-4 rounded-full bg-brand" />
+            </div>
+          ))}
+        </motion.div>
+      </div>
+
       {/* Creative Comrades Section (Footer CTA) */}
-      <section className="py-32 px-6 md:px-12 bg-black">
-        <div className="max-w-5xl mx-auto text-center bg-neutral-900/50 border border-white/5 rounded-[3rem] p-12 md:p-24 relative overflow-hidden">
+      <section className="py-20 px-6 md:px-12 bg-black">
+        <div className="max-w-5xl mx-auto text-center bg-neutral-900/50 border border-white/5 rounded-[3rem] p-8 md:p-16 relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-brand/10 to-transparent pointer-events-none" />
           
           <Reveal>
-            <h2 className="text-5xl md:text-7xl font-display font-bold uppercase tracking-tighter leading-[0.9] mb-8">
+            <h2 className="h2-section mb-8 !leading-[0.9]">
               Not limited to video,<br />
               we're your creative comrades.
             </h2>
@@ -164,7 +220,7 @@ export default function WorkPage() {
           <motion.p 
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            className="text-white/40 text-lg mb-12 max-w-2xl mx-auto"
+            className="text-white/40 text-body mb-12 max-text-width mx-auto"
           >
             Got questions, project ideas, or just want to say hi? We're all ears!
           </motion.p>

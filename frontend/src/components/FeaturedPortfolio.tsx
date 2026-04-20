@@ -34,7 +34,7 @@ export default function FeaturedPortfolio() {
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-6xl font-display font-black text-white uppercase tracking-tighter"
+            className="h2-section text-white"
           >
             Our Handpicked <br />
             <span className="text-brand">Featured Portfolio</span>
@@ -50,7 +50,7 @@ export default function FeaturedPortfolio() {
             to="/work"
             className="group flex items-center gap-4 bg-white/5 hover:bg-brand text-white px-8 py-4 rounded-full transition-all border border-white/10"
           >
-            <span className="text-xs font-mono uppercase tracking-widest font-bold">See All Projects</span>
+            <span className="text-[11px] font-sans uppercase tracking-widest font-bold">See All Projects</span>
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </Link>
         </motion.div>
@@ -76,10 +76,10 @@ export default function FeaturedPortfolio() {
               <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent opacity-60" />
               
               <div className="absolute bottom-8 left-8">
-                <span className="bg-brand text-white text-[10px] font-mono font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-3 inline-block">
+                <span className="bg-brand text-white text-[10px] font-sans font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-3 inline-block">
                   {project.category}
                 </span>
-                <h3 className="text-3xl font-display font-black text-white uppercase tracking-tighter">
+                <h3 className="h4-small text-white">
                   {project.title}
                 </h3>
               </div>
