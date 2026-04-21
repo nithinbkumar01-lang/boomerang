@@ -270,7 +270,35 @@ const PortfolioCard = ({ item, index, activeIndex, onSwipe, total }: CardProps &
 
 export default function PersonalizedPortfolio() {
   const [shortProjects, setShortProjects] = useState<any[]>(PORTFOLIO_DATA);
-  const [longProjects, setLongProjects] = useState<any[]>([]);
+  const [longProjects, setLongProjects] = useState<any[]>([
+    {
+      id: 22,
+      url: "https://res.cloudinary.com/dofg6bsom/video/upload/v1773762170/When_Ashish_Vidyarthi_Met_Biryani_Zest_%EF%B8%8F_From_the_silver_screen_to_our_spice_scene_%EF%B8%8FWe_ha_le9njn.mp4",
+      title: "Ashish Vidyarthi Meet",
+      client: "Biriyani Zest",
+      category: "Campaigns",
+      subtitle: "Celebrity Collaboration",
+      aspect: "horizontal"
+    },
+    {
+      id: 23,
+      url: "https://res.cloudinary.com/dofg6bsom/video/upload/v1774452821/Indiqube_Premier_League_Teaser_jdrpoz.mp4",
+      title: "Premier League Teaser",
+      client: "Indiqube",
+      category: "Events",
+      subtitle: "IPL 2024",
+      aspect: "vertical"
+    },
+    {
+      id: 24,
+      url: "https://res.cloudinary.com/dofg6bsom/video/upload/v1775561706/Indiqube_Comedy_Show_o2pueh.mp4",
+      title: "Comedy Show",
+      client: "Indiqube",
+      category: "Events",
+      subtitle: "Live Entertainment",
+      aspect: "vertical"
+    }
+  ]);
   const [shortIndex, setShortIndex] = useState(0);
   const [longIndex, setLongIndex] = useState(0);
 
@@ -331,13 +359,13 @@ export default function PersonalizedPortfolio() {
       </div>
 
       {/* Section Heading */}
-      <div className="max-w-7xl mx-auto mb-16 text-center pointer-events-none">
+      <div className="max-w-7xl mx-auto mb-16 text-center pointer-events-none relative z-10">
         <Reveal>
-          <span className="text-brand font-mono text-[10px] uppercase tracking-[0.4em] mb-2 block">Our Work</span>
+          <span className="text-brand font-mono text-xs uppercase tracking-[0.4em] mb-3 block">Selected</span>
         </Reveal>
         <Reveal delay={0.1}>
           <h1 className="text-5xl md:text-7xl font-display font-black text-white uppercase italic tracking-tighter">
-            Selected <span className="text-brand">Portfolio</span>
+            Our <span className="text-brand">Work</span>
           </h1>
         </Reveal>
       </div>

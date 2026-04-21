@@ -22,6 +22,11 @@ export default function WorkPage() {
         setProjects(data);
       } catch (err) {
         console.error(err);
+        // Provide decent fallback if API is not available
+        setProjects([
+          { id: 1, title: "Nutrient-Rich Pulses", client: "Biriyani Zest", category: "Reels", url: "https://res.cloudinary.com/dofg6bsom/video/upload/v1773762167/Trusted_since_1989_Serving_7_states_and_15k_families_with_farm-fresh_Nutrient-Rich_Pulses.Vi_hg5oq4.mp4" },
+          { id: 22, title: "Ashish Vidyarthi Meet", client: "Biriyani Zest", category: "Campaigns", url: "https://res.cloudinary.com/dofg6bsom/video/upload/v1773762170/When_Ashish_Vidyarthi_Met_Biryani_Zest_%EF%B8%8F_From_the_silver_screen_to_our_spice_scene_%EF%B8%8FWe_ha_le9njn.mp4" }
+        ]);
       } finally {
         setLoading(false);
       }
