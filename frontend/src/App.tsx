@@ -9,6 +9,7 @@ import ServicesPage from "./pages/ServicesPage";
 import ProjectDetail from "./pages/ProjectDetail";
 import { motion, AnimatePresence } from "motion/react";
 import { useEffect } from "react";
+import { CalendarProvider } from "./context/CalendarContext";
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -65,7 +66,9 @@ function AppContent() {
 export default function App() {
   return (
     <Router>
-      <AppContent />
+      <CalendarProvider>
+        <AppContent />
+      </CalendarProvider>
     </Router>
   );
 }

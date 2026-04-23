@@ -5,7 +5,7 @@ import { useState } from "react";
 const NEEDS_DATA = [
   {
     title: "brand",
-    color: "bg-[#2D7A64]",
+    color: "bg-ink",
     items: [
       "Brand Strategy",
       "360° Creative",
@@ -29,7 +29,7 @@ const NEEDS_DATA = [
   },
   {
     title: "social",
-    color: "bg-[#8DA9FF]",
+    color: "bg-neutral-800",
     items: [
       "Social Media Strategy",
       "Social Media Creative",
@@ -43,15 +43,15 @@ const NEEDS_DATA = [
     sticker: (
       <div className="absolute -top-10 -right-6 w-20 h-20 -rotate-12">
         <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-lg">
-          <rect x="30" y="10" width="40" height="80" rx="10" fill="#E5FFB2" stroke="#333" strokeWidth="3" />
-          <path d="M40 25 Q50 35 60 25 M40 45 Q50 55 60 45 M40 65 Q50 75 60 65" stroke="#333" strokeWidth="3" fill="none" />
+          <rect x="30" y="10" width="40" height="80" rx="10" fill="#F27D26" stroke="#333" strokeWidth="3" />
+          <path d="M40 25 Q50 35 60 25 M40 45 Q50 55 60 45 M40 65 Q50 75 60 65" stroke="white" strokeWidth="3" fill="none" />
         </svg>
       </div>
     )
   },
   {
     title: "activations",
-    color: "bg-[#FF7A3D]",
+    color: "bg-brand",
     items: [
       "Activation Strategy",
       "Event Planning",
@@ -62,7 +62,7 @@ const NEEDS_DATA = [
     sticker: (
       <div className="absolute -top-14 -right-10 w-24 h-24 rotate-6">
         <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-lg">
-          <circle cx="50" cy="50" r="40" fill="#8DA9FF" stroke="white" strokeWidth="3" />
+          <circle cx="50" cy="50" r="40" fill="#000" stroke="white" strokeWidth="3" />
           <circle cx="35" cy="40" r="5" fill="white" />
           <circle cx="65" cy="40" r="5" fill="white" />
           <path d="M30 65 Q50 80 70 65" stroke="white" strokeWidth="4" fill="none" strokeLinecap="round" />
@@ -71,8 +71,8 @@ const NEEDS_DATA = [
     )
   },
   {
-    title: "video production",
-    color: "bg-[#A63D5A]",
+    title: "production",
+    color: "bg-neutral-900",
     items: [
       "Campaign video",
       "Branded content",
@@ -83,16 +83,16 @@ const NEEDS_DATA = [
     sticker: (
       <div className="absolute -top-10 -right-4 w-20 h-20 -rotate-6">
         <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-lg">
-          <rect x="20" y="30" width="60" height="40" rx="5" fill="#E5FFB2" stroke="#333" strokeWidth="3" />
+          <rect x="20" y="30" width="60" height="40" rx="5" fill="#fff" stroke="#333" strokeWidth="3" />
           <circle cx="50" cy="50" r="10" fill="none" stroke="#333" strokeWidth="3" />
-          <path d="M70 35 L85 25 L85 75 L70 65" fill="#E5FFB2" stroke="#333" strokeWidth="3" />
+          <path d="M70 35 L85 25 L85 75 L70 65" fill="#fff" stroke="#333" strokeWidth="3" />
         </svg>
       </div>
     )
   },
   {
-    title: "with partners",
-    color: "bg-[#E5B2FF]",
+    title: "partners",
+    color: "bg-neutral-700",
     items: [
       "PR/Journalism",
       "3D / VFX",
@@ -103,7 +103,7 @@ const NEEDS_DATA = [
     sticker: (
       <div className="absolute -top-12 -right-6 w-24 h-24 rotate-12">
         <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-lg">
-          <path d="M50 80 C20 80 10 50 50 20 C90 50 80 80 50 80 Z" fill="#A63D5A" stroke="white" strokeWidth="3" />
+          <path d="M50 80 C20 80 10 50 50 20 C90 50 80 80 50 80 Z" fill="#F27D26" stroke="white" strokeWidth="3" />
           <path d="M30 30 L35 35 M65 30 L60 35" stroke="white" strokeWidth="3" strokeLinecap="round" />
         </svg>
       </div>
@@ -115,14 +115,15 @@ export default function NeedsSection() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section className="pt-32 pb-64 md:pb-32 px-6 md:px-12 bg-[#F2EDE4] overflow-hidden">
+    <section className="pt-32 pb-64 md:pb-32 px-6 md:px-12 bg-paper overflow-hidden">
       <div className="max-w-7xl mx-auto text-center mb-24">
         <Reveal>
-          <h2 className="h1-display">
-            call us if you <span className="relative">
-              need:
-              <svg className="absolute -bottom-4 left-0 w-full h-4 text-ink/20" viewBox="0 0 200 20" preserveAspectRatio="none">
-                <path d="M0 10 Q50 0 100 10 T200 10" fill="none" stroke="currentColor" strokeWidth="4" />
+          <span className="text-brand font-mono text-[10px] uppercase tracking-[0.4em] mb-4 block">Capabilities</span>
+          <h2 className="h1-display text-ink uppercase">
+            Let's build your <span className="relative">
+              strategy
+              <svg className="absolute -bottom-2 left-0 w-full h-3 text-brand/30" viewBox="0 0 200 20" preserveAspectRatio="none">
+                <path d="M0 10 Q50 0 100 10 T200 10" fill="none" stroke="currentColor" strokeWidth="6" />
               </svg>
             </span>
           </h2>

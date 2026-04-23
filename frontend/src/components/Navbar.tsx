@@ -2,8 +2,10 @@ import { motion, useScroll, AnimatePresence } from "motion/react";
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Menu, X, Instagram, Twitter, Linkedin } from "lucide-react";
+import { useCalendar } from "../context/CalendarContext";
 
 export default function Navbar() {
+  const { openCalendar } = useCalendar();
   const location = useLocation();
   const isHome = location.pathname === "/";
   const { scrollY } = useScroll();
@@ -64,7 +66,10 @@ export default function Navbar() {
               ))}
             </div>
 
-            <button className="hidden md:block bg-brand text-white px-6 py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 shadow-lg shadow-brand/20 active:scale-95">
+            <button 
+              onClick={openCalendar}
+              className="hidden md:block bg-brand text-white px-6 py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 shadow-lg shadow-brand/20 active:scale-95"
+            >
               Talk to Us
             </button>
             
@@ -99,6 +104,15 @@ export default function Navbar() {
                   {link.name}
                 </Link>
               ))}
+              <button 
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  openCalendar();
+                }}
+                className="mt-4 bg-brand text-white px-8 py-3 rounded-xl text-xs font-bold uppercase tracking-widest active:scale-95 shadow-xl"
+              >
+                Talk to Us
+              </button>
               <div className="flex gap-8 mt-12 text-white/40">
                 <Instagram size={24} />
                 <Twitter size={24} />

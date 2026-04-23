@@ -1,7 +1,5 @@
 import Hero from "../components/Hero";
 import Intro from "../components/Intro";
-import About from "../components/About";
-import Services from "../components/Services";
 import PersonalizedPortfolio from "../components/PersonalizedPortfolio";
 import ClientLogos from "../components/ClientLogos";
 import NeedsSection from "../components/NeedsSection";
@@ -19,8 +17,7 @@ export default function HomePage() {
       <Intro />
       <ClientLogos />
       <PersonalizedPortfolio />
-      <About />
-      <Services />
+      <NeedsSection />
       <Testimonials />
     </>
   );

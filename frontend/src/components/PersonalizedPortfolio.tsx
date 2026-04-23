@@ -336,44 +336,43 @@ export default function PersonalizedPortfolio() {
   const activeLong = longProjects[longIndex];
 
   return (
-    <section className="relative min-h-screen bg-black overflow-hidden py-16 px-6 md:px-12">
-      {/* Background Orbs */}
-      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-brand/5 rounded-full blur-[160px] pointer-events-none -z-10" />
-      <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-blue-600/5 rounded-full blur-[160px] pointer-events-none -z-10" />
+    <section className="relative min-h-screen bg-neutral-950 overflow-hidden py-24 px-6 md:px-12">
+      {/* Background Orbs - Dramatic for dark theme */}
+      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-brand/10 rounded-full blur-[160px] pointer-events-none -z-10" />
+      <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-brand/10 rounded-full blur-[160px] pointer-events-none -z-10" />
 
       {/* Background Doodles - Scattered artistic elements */}
-      <div className="absolute inset-0 pointer-events-none opacity-20 z-0">
+      <div className="absolute inset-0 pointer-events-none opacity-10 z-0">
         <motion.svg 
           animate={{ rotate: [0, 10, 0] }}
           transition={{ duration: 5, repeat: Infinity }}
           className="absolute top-[15%] left-[5%] w-12 h-12 text-brand" viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/>
         </motion.svg>
-        <motion.svg 
-          animate={{ scale: [1, 1.1, 1] }}
-          transition={{ duration: 4, repeat: Infinity }}
-          className="absolute bottom-[20%] right-[10%] w-24 h-24 text-white rotate-45" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M20,80 Q50,20 80,80" strokeLinecap="round" />
-          <path d="M70,70 L80,80 L90,70" strokeLinecap="round" />
-        </motion.svg>
       </div>
 
       {/* Section Heading */}
-      <div className="max-w-7xl mx-auto mb-16 text-center pointer-events-none relative z-10">
-        <Reveal>
-          <span className="text-brand font-mono text-xs uppercase tracking-[0.4em] mb-3 block">Selected</span>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <h1 className="text-5xl md:text-7xl font-display font-black text-white uppercase italic tracking-tighter">
-            Our <span className="text-brand">Work</span>
-          </h1>
-        </Reveal>
+      <div className="max-w-7xl mx-auto mb-20 text-center relative z-10 px-6">
+        <span className="text-brand font-mono text-[10px] uppercase tracking-[0.4em] mb-4 block">Selected Archive</span>
+        <h1 className="h1-display text-white uppercase tracking-tighter">
+          Our <span className="text-brand">Work</span>
+        </h1>
       </div>
 
       <div className="max-w-7xl mx-auto space-y-32">
         
-        {/* Short Form Section - Stacked Layout Like Image */}
+        {/* Short Form Section */}
         <div className="flex flex-col items-center">
+          <div className="text-center mb-12 px-6">
+             <span className="text-brand/60 font-mono text-[10px] uppercase tracking-[0.4em] mb-2 block">01 / Motion</span>
+             <h2 className="h2-section text-white uppercase tracking-tighter">
+                Short <span className="text-brand">Form</span> Content
+             </h2>
+             <p className="text-white/40 max-w-md mx-auto mt-4 text-sm font-sans tracking-tight">
+                High-impact, viral-ready content designed for the modern attention span.
+             </p>
+          </div>
+
           <div className="relative w-full h-[400px] md:h-[480px] flex items-center justify-center perspective-1000 mb-6">
             
             {/* SVG Decorations Like Image */}
@@ -390,7 +389,7 @@ export default function PersonalizedPortfolio() {
                     className="flex items-center gap-2 text-white/40"
                   >
                     <ChevronLeft size={14} className="text-brand" />
-                    <span className="text-[10px] font-mono uppercase tracking-[0.2em] whitespace-nowrap">Swipe to explore</span>
+                    <span className="text-[10px] font-mono uppercase tracking-[0.2em] whitespace-nowrap text-white/60">Swipe to explore</span>
                     <ChevronRight size={14} className="text-brand" />
                   </motion.div>
                   <svg className="w-20 h-4 text-brand/30" viewBox="0 0 100 20">
@@ -399,7 +398,7 @@ export default function PersonalizedPortfolio() {
                </motion.div>
 
                {/* Left Squiggles */}
-               <svg className="absolute top-10 left-[15%] w-24 h-24 text-white/10 -rotate-12" viewBox="0 0 100 100">
+               <svg className="absolute top-10 left-[15%] w-24 h-24 text-white/5 -rotate-12" viewBox="0 0 100 100">
                   <path d="M10,20 c15,0 15,40 30,40 s15,-40 30,-40 s15,40 30,40" fill="none" stroke="currentColor" strokeWidth="2" />
                   <path d="M10,40 c15,0 15,40 30,40 s15,-40 30,-40 s15,40 30,40" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.5" />
                </svg>
@@ -443,17 +442,17 @@ export default function PersonalizedPortfolio() {
                       <span className="text-[10px] font-black tracking-wider italic lowercase">{activeShort?.client}</span>
                    </div>
                    
-                   <h2 className="text-3xl md:text-5xl font-display font-bold text-white tracking-tighter leading-none lowercase">
+                   <h2 className="text-3xl md:text-5xl font-display font-black text-white tracking-tighter leading-none">
                       {activeShort?.title}
                    </h2>
 
                    <div className="flex flex-col items-center gap-4">
-                      <p className="text-white/40 font-mono text-[10px] uppercase tracking-[0.4em] lowercase">
+                      <p className="text-white/40 font-mono text-[10px] uppercase tracking-[0.4em]">
                          {activeShort?.subtitle}
                       </p>
 
                       <div className="group relative cursor-pointer inline-flex items-center gap-3">
-                         <span className="text-white font-sans text-base font-medium tracking-tight border-b border-white/20 pb-0.5 group-hover:text-brand group-hover:border-brand transition-all lowercase">
+                         <span className="text-white font-sans text-base font-bold tracking-tight border-b border-white/20 pb-0.5 group-hover:text-brand group-hover:border-brand transition-all">
                             View project
                          </span>
                          <motion.div 
@@ -468,14 +467,16 @@ export default function PersonalizedPortfolio() {
           </div>
         </div>
 
-        {/* Long Form Section - Consistent Horizontal Frame with Rotation for First Video */}
+        {/* Long Form Section */}
         <div className="max-w-7xl mx-auto flex flex-col items-center">
-          <div className="text-center mb-8 px-6">
-            <Reveal>
-              <h3 className="h2-section text-white mb-2 uppercase tracking-tighter">
-                Long <span className="text-brand">Form</span>
-              </h3>
-            </Reveal>
+          <div className="text-center mb-12 px-6">
+             <span className="text-brand/60 font-mono text-[10px] uppercase tracking-[0.4em] mb-2 block">02 / Narrative</span>
+             <h3 className="h2-section text-white uppercase tracking-tighter">
+                Long <span className="text-brand">Form</span> Content
+             </h3>
+             <p className="text-white/40 max-w-md mx-auto mt-4 text-sm font-sans tracking-tight">
+                Deep-dive storytelling and cinematic projects that leave a lasting impression.
+             </p>
           </div>
 
           <div className="w-full flex flex-col items-center">
@@ -511,13 +512,13 @@ export default function PersonalizedPortfolio() {
             <div className="flex gap-4 mb-6">
               <button 
                 onClick={prevLong}
-                className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-brand hover:border-brand hover:text-black transition-all"
+                className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-brand hover:border-brand hover:text-white transition-all"
               >
                 <ChevronLeft size={20} />
               </button>
               <button 
                 onClick={nextLong}
-                className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-brand hover:border-brand hover:text-black transition-all"
+                className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-brand hover:border-brand hover:text-white transition-all"
               >
                 <ChevronRight size={20} />
               </button>
@@ -535,7 +536,7 @@ export default function PersonalizedPortfolio() {
                    <div className="bg-brand/10 border border-brand/20 text-brand px-4 py-1 rounded-full inline-block">
                       <span className="text-[10px] font-bold uppercase tracking-[0.2em]">{activeLong?.client}</span>
                    </div>
-                   <h4 className="text-2xl md:text-4xl font-display font-bold text-white tracking-tighter uppercase italic">{activeLong?.title}</h4>
+                   <h4 className="text-2xl md:text-3xl font-display font-black text-white tracking-tighter uppercase leading-tight">{activeLong?.title}</h4>
                 </motion.div>
               </AnimatePresence>
             </div>

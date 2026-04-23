@@ -25,7 +25,7 @@ export default function ClientLogos({ variant = "light" }: ClientLogosProps) {
   const duplicatedLogos = [...logos, ...logos, ...logos];
 
   return (
-    <section className={`py-12 overflow-hidden border-y ${isDark ? 'bg-white border-black/5' : 'bg-white border-ink/5'}`}>
+    <section className={`pt-8 pb-12 overflow-hidden border-b ${isDark ? 'bg-white border-black/5' : 'bg-white border-ink/5'}`}>
       <div className="max-w-7xl mx-auto px-6 mb-8 text-center">
         <span className={`${isDark ? 'text-black/40' : 'text-ink/40'} font-sans text-[10px] uppercase tracking-[0.3em] font-bold`}>
           Trusted by Industry Leaders

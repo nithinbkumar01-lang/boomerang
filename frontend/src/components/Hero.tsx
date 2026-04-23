@@ -3,8 +3,10 @@ import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, Instagram, Twitter, Linkedin } from "lucide-react";
 import { Reveal } from "./Reveal";
+import { useCalendar } from "../context/CalendarContext";
 
 export default function Hero() {
+  const { openCalendar } = useCalendar();
   const containerRef = useRef(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -57,7 +59,7 @@ export default function Hero() {
               </svg>
             </div>
             <div className="flex flex-col items-start">
-              <span className="font-display font-bold tracking-tighter uppercase text-xl text-white group-hover/logo:text-brand transition-colors">boomerang</span>
+              <span className="font-display font-black tracking-[-0.05em] uppercase text-xl text-white group-hover/logo:text-brand transition-colors">boomerang</span>
               <span className="text-[9px] font-mono uppercase tracking-[0.4em] text-white/30 -mt-1 group-hover/logo:text-white/60 transition-colors">studios</span>
             </div>
           </Link>
@@ -77,7 +79,10 @@ export default function Hero() {
               ))}
             </div>
 
-            <button className="hidden md:block bg-brand text-white px-6 py-2.5 rounded-xl text-[11px] font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 shadow-xl active:scale-95">
+            <button 
+              onClick={openCalendar}
+              className="hidden md:block bg-white text-black px-8 py-3 rounded-full text-[11px] font-black uppercase tracking-widest hover:bg-brand hover:text-white transition-all duration-300 shadow-2xl active:scale-95"
+            >
               Talk to Us
             </button>
             
@@ -111,6 +116,15 @@ export default function Hero() {
                     {link.name}
                   </Link>
                 ))}
+                <button 
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    openCalendar();
+                  }}
+                  className="mt-4 bg-brand text-white px-10 py-4 rounded-full text-sm font-black uppercase tracking-widest active:scale-95 shadow-xl"
+                >
+                  Talk to Us
+                </button>
                 <div className="flex gap-8 mt-12 text-white/40">
                   <Instagram size={24} />
                   <Twitter size={24} />
